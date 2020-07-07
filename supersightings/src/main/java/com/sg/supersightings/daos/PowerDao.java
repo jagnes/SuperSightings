@@ -45,6 +45,19 @@ public class PowerDao {
         return toAdd;
     }
     
+    public void deletePowerById(Integer id) {
+        template.update("delete from powers where powerId =?", id);
+        
+        template.update("alter table powers auto_increment =?", id);
+    }
+
+    public void editPower(Power toEdit) {
+        template.update("update powers set powerName =?, powerDescription =? where powerId =?",
+                toEdit.getPowerName(),
+                toEdit.getPowerDescription(),
+                toEdit.getPowerId());
+    }
+    
     private static class PowerMapper implements RowMapper<Power> {
         
         public Power mapRow(ResultSet rs, int i) throws SQLException {

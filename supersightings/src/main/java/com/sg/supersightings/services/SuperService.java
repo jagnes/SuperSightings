@@ -32,6 +32,14 @@ public class SuperService {
     public Power addPower(Power toAdd) {
         return pDao.addPower(toAdd);
     }
+
+    public void deletePowerById(Integer id) {
+        pDao.deletePowerById(id);
+    }
+
+    public void editPower(Power toEdit) {
+        pDao.editPower(toEdit);
+    }
     
     
 }

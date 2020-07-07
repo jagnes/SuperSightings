@@ -7,6 +7,7 @@ package com.sg.supersightings.controllers;
 
 import com.sg.supersightings.dtos.Power;
 import com.sg.supersightings.services.SuperService;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,4 +55,29 @@ public class PowerController {
         return "redirect:/powers";
     }
     
+    @GetMapping("deletepower")
+    public String deletePower(HttpServletRequest request) {
+        Integer id = Integer.parseInt(request.getParameter("id"));
+
+        service.deletePowerById(id);
+        
+        return "redirect:/powers";
+    }
+    
+    @GetMapping("editpower")
+    public String displayEditPower(HttpServletRequest request, Model pageModel) {
+        Integer id = Integer.parseInt(request.getParameter("id"));
+        Power toEdit = service.getPowerById(id);
+        pageModel.addAttribute("power", toEdit);
+        pageModel.addAttribute("powerId", id);
+        
+        return "editpower";
+    }
+    
+    @PostMapping("editpower")
+    public String editPower(Power toEdit) {
+        service.editPower(toEdit);
+        
+        return "redirect:/powerdetails/"+toEdit.getPowerId();
+    }
 }
