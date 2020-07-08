@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
  * @author jweez
  */
 @Repository
-public class LocationDao {
+public class LocationDaoDB {
     
     @Autowired
     JdbcTemplate template;

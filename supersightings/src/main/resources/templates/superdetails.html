@@ -12,18 +12,6 @@ and open the template in the editor.
         <title>Super Sightings</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-            body, html {
-                height: 100%;
-                margin: 0;
-            }
-            body {
-                background: url("https://i.imgur.com/zjvxTZ1.png"); 
-                background-size: cover;
-                height: 100%;
-                overflow: hidden;
-            }
-        </style>
     </head>
     <body>
         <div class="container">
@@ -53,26 +41,60 @@ and open the template in the editor.
 
         <div class="row m-4 border border-dark">
             <div class="col text-center m-3">
-                <h2>Powers</h2>
-                <a class="btn btn-outline-danger btn-block m-3" href="/addpower">Add Power</a>
+                <h1 th:text="${super.superName}">Super Details</h1>
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Power Name</th>
+                            <th>Super Name</th>
+                            <th>Description</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="power : ${allPowers}">
-                            <td th:text="${power.powerId}">Power ID</td>
-                            <td><a class="btn-outline-danger " href="#" th:href="${'/powerdetails/' + power.powerId}" th:text="${power.powerName}">Power Name</a></td>
+                        <tr>
+                            <td th:text="${super.superId}">ID</td>
+                            <td th:text="${super.superName}">Super Name</td>
+                            <td th:text="${super.superDescription}">Super Description</td>
                         </tr>
                     </tbody>
-                </table>
+                </table><hr>
+                <h4 th:text="${super.superName}+'&#8217;s Power'">Power</h4>
+                <div class="row m-4 border border-dark">
+                    <div class="col text-center m-3">
+                        <h5 th:text="${power.powerName}">Power Details</h5>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Power Name</th>
+                                    <th>Power Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td th:text="${power.powerId}">Power ID</td>
+                                    <td th:text="${power.powerName}">Power Name</td>
+                                    <td th:text="${power.powerDescription}">Power Description</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
+
+
+
+    <div class="row">
+        <div class="col text-center m-3">
+            <a class="btn btn-outline-danger btn-block" href="#" th:href="@{/editsuper(id=${superId})}">Edit</a>
+        </div>
+        <div class="col text-center m-3">
+            <a class="btn btn-outline-danger btn-block" href="#" th:href="@{/deletesuper(id=${superId})}">Delete</a>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 

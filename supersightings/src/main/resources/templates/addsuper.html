@@ -41,22 +41,34 @@ and open the template in the editor.
 
         <div class="row m-4 border border-dark">
             <div class="col text-center m-3">
-                <h2>Add Power</h2>
-                <form action="addpower" method="POST">
+                <h2>Add Super</h2>
+                <form action="addsuper" method="POST">
                     <div class="form-group row">
-                        <label for="powerName" class="col-3 col-form-label"><h5>
-                                Power Name: </h5></label>
+                        <label for="superName" class="col-3 col-form-label"><h5>
+                                Super Name: </h5></label>
                         <div class="col-9">
-                            <input name="powerName" 
-                                   id="powerNameInput" class="form-control"/>
+                            <input name="superName" 
+                                   id="superNameInput" class="form-control"/>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="powerDescription" class="col-3 col-form-label"><h5>
-                                Power Description: </h5></label>
+                        <label for="superDescription" class="col-3 col-form-label"><h5>
+                                Super Description: </h5></label>
                         <div class="col-9">
-                            <input name="powerDescription" 
-                                   id="powerDescriptionInput" class="form-control"/>
+                            <input name="superDescription" 
+                                   id="superDescriptionInput" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="power" class="col-3 col-form-label"><h5>
+                                Power: </h5></label>
+                        <div class="col-9">
+                            <select id="power" name="powerId" class="form-control">
+                                <option value="0">Select a Power</option>
+                                <option th:each="power : ${powers}" 
+                                        th:value="${power.powerId}" 
+                                        th:text="${power.powerName}"></option>
+                            </select>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-danger">Add Power</button>

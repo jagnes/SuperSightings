@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
  * @author jweez
  */
 @Repository
-public class PowerDao {
+public class PowerDaoDB {
     
     @Autowired
     JdbcTemplate template;

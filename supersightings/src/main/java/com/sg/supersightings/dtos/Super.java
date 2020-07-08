@@ -12,11 +12,11 @@ import java.util.Objects;
  * @author jweez
  */
 public class Super {
-    
+
     private int superId;
     private String superName;
     private String superDescription;
-    private Power superpower;
+    private int powerId;
 
     /**
      * @return the superId
@@ -61,26 +61,26 @@ public class Super {
     }
 
     /**
-     * @return the superpower
+     * @return the powerId
      */
-    public Power getSuperpower() {
-        return superpower;
+    public int getPowerId() {
+        return powerId;
     }
 
     /**
-     * @param superpower the superpower to set
+     * @param powerId the powerId to set
      */
-    public void setSuperpower(Power superpower) {
-        this.superpower = superpower;
+    public void setPowerId(int powerId) {
+        this.powerId = powerId;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + this.superId;
-        hash = 97 * hash + Objects.hashCode(this.superName);
-        hash = 97 * hash + Objects.hashCode(this.superDescription);
-        hash = 97 * hash + Objects.hashCode(this.superpower);
+        hash = 59 * hash + this.superId;
+        hash = 59 * hash + Objects.hashCode(this.superName);
+        hash = 59 * hash + Objects.hashCode(this.superDescription);
+        hash = 59 * hash + this.powerId;
         return hash;
     }
 
@@ -99,17 +99,15 @@ public class Super {
         if (this.superId != other.superId) {
             return false;
         }
+        if (this.powerId != other.powerId) {
+            return false;
+        }
         if (!Objects.equals(this.superName, other.superName)) {
             return false;
         }
         if (!Objects.equals(this.superDescription, other.superDescription)) {
             return false;
         }
-        if (!Objects.equals(this.superpower, other.superpower)) {
-            return false;
-        }
         return true;
     }
-    
-    
 }

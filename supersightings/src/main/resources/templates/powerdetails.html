@@ -16,25 +16,25 @@ and open the template in the editor.
     <body>
         <div class="container">
             <div class="row m-4">
-                <div class="col text-center border border-dark">
-                    <h1><a href="/">Super Sightings</a></h1>
+                <div class="col">
+                    <a class="btn btn-outline-danger btn-block" style="font-size: xx-large; font-weight: bold" href="/">Super Sightings</a>
                 </div>
             </div>
             <div class="row m-4 border border-dark">
                 <div class="col text-center m-3">
-                    <a href="/sightings" class="btn btn-outline-primary btn-lg">Sightings</a>
+                    <a href="/sightings" class="btn btn-outline-danger btn-lg">Sightings</a>
                 </div>
                 <div class="col text-center m-3">
-                    <a href="/supers" class="btn btn-outline-primary btn-lg">Supers</a>
+                    <a href="/supers" class="btn btn-outline-danger btn-lg">Supers</a>
                 </div>
                 <div class="col text-center m-3">
-                    <a href="/powers" class="btn btn-outline-primary btn-lg">Powers</a>
+                    <a href="/powers" class="btn btn-outline-danger btn-lg">Powers</a>
                 </div>
                 <div class="col text-center m-3">
-                    <a href="/organizations" class="btn btn-outline-primary btn-lg">Organizations</a>
+                    <a href="/organizations" class="btn btn-outline-danger btn-lg">Organizations</a>
                 </div>
                 <div class="col text-center m-3">
-                    <a href="/locations" class="btn btn-outline-primary btn-lg">Locations</a>
+                    <a href="/locations" class="btn btn-outline-danger btn-lg">Locations</a>
                 </div>
             </div>
         </div>
@@ -63,10 +63,10 @@ and open the template in the editor.
     </div>
     <div class="row">
         <div class="col text-center m-3">
-            <a class="btn btn-outline-primary btn-block" href="#" th:href="@{/editpower(id=${powerId})}">Edit</a>
+            <a class="btn btn-outline-danger btn-block" href="#" th:href="@{/editpower(id=${powerId})}">Edit</a>
         </div>
         <div class="col text-center m-3">
-            <a class="btn btn-outline-primary btn-block" href="#" th:href="@{/deletepower(id=${powerId})}">Delete</a>
+            <a class="btn btn-outline-danger btn-block" href="#" th:href="@{/deletepower(id=${powerId})}">Delete</a>
         </div>
     </div>
 

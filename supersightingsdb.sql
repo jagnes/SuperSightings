@@ -7,13 +7,13 @@ use supersightingsdb;
 create table powers (
 	powerId int primary key auto_increment,
     powerName varchar(20) not null,
-    powerDescription varchar(200)
+    powerDescription varchar(300)
 );
 
 create table supers (
 	superId int primary key auto_increment,
     superName varchar(30) not null,
-    superDescription varchar(200),
+    superDescription varchar(300),
     powerId int not null,
     foreign key fk_powerfk(powerId)
 		references powers(powerId)
@@ -22,7 +22,7 @@ create table supers (
 create table organizations (
 	orgId int primary key auto_increment,
     orgName varchar(30) not null,
-    orgDescription varchar(50),
+    orgDescription varchar(100),
     orgAddress varchar(50) not null,
     orgCity varchar(50) not null,
     orgState char(2) not null,
@@ -43,7 +43,7 @@ create table organizations_supers (
 create table locations (
 	locId int primary key auto_increment,
 	locName varchar(50) not null,
-    locDescription varchar(50),
+    locDescription varchar(100),
     locAddress varchar(50),
     locCity varchar(50) not null,
     locState char(2) not null,
@@ -63,4 +63,4 @@ create table sightings (
 		references locations(locId)
 );
     
-    
+    SET GLOBAL FOREIGN_KEY_CHECKS=1;

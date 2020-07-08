@@ -14,9 +14,10 @@ import org.springframework.stereotype.Repository;
  * @author jweez
  */
 @Repository
-public class SightingDao {
+public class OrganizationDaoDB {
     
     @Autowired
     JdbcTemplate template;
+    
     
 }

@@ -18,7 +18,7 @@ and open the template in the editor.
                 margin: 0;
             }
             body {
-                background: url("https://i.imgur.com/zjvxTZ1.png"); 
+                background: url("https://i.imgur.com/6nd9qoT.png"); 
                 background-size: cover;
                 height: 100%;
                 overflow: hidden;
@@ -53,19 +53,19 @@ and open the template in the editor.
 
         <div class="row m-4 border border-dark">
             <div class="col text-center m-3">
-                <h2>Powers</h2>
-                <a class="btn btn-outline-danger btn-block m-3" href="/addpower">Add Power</a>
+                <h2>Supers</h2>
+                <a class="btn btn-outline-danger btn-block m-3" href="/addsuper">Add Super</a>
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Power Name</th>
+                            <th>Super Name</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="power : ${allPowers}">
-                            <td th:text="${power.powerId}">Power ID</td>
-                            <td><a class="btn-outline-danger " href="#" th:href="${'/powerdetails/' + power.powerId}" th:text="${power.powerName}">Power Name</a></td>
+                        <tr th:each="super : ${allSupers}">
+                            <td th:text="${super.superId}">Super ID</td>
+                            <td><a class="btn-outline-danger " href="#" th:href="${'/superdetails/' + super.superId}" th:text="${super.superName}">Super Name</a></td>
                         </tr>
                     </tbody>
                 </table>
