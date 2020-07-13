@@ -12,15 +12,30 @@ and open the template in the editor.
         <title>Super Sightings</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body, html {
+                height: 100%;
+                margin: 0;
+            }
+            body {
+                background: url("https://i.imgur.com/zjvxTZ1.png"); 
+                background-size: cover;
+                height: 100%;
+            }
+            .bg {
+                background: rgba(0,0,0,.7);
+            }
+           
+        </style>
     </head>
     <body>
         <div class="container">
             <div class="row m-4">
                 <div class="col">
-                    <a class="btn btn-outline-danger btn-block" style="font-size: xx-large; font-weight: bold" href="/">Super Sightings</a>
+                    <a class="btn btn-outline-danger btn-block bg" style="font-size: 50px; font-weight: bold" href="/">Super Sightings</a>
                 </div>
             </div>
-            <div class="row m-4 border border-dark">
+            <div class="row m-4 border border-dark bg">
                 <div class="col text-center m-3">
                     <a href="/sightings" class="btn btn-outline-danger btn-lg">Sightings</a>
                 </div>
@@ -39,7 +54,7 @@ and open the template in the editor.
             </div>
         </div>
 
-        <div class="row m-4 border border-dark">
+        <div class="row m-4 border border-dark bg" style="color: whitesmoke">
             <div class="col text-center m-3">
                 <h2 th:text="${power.powerName}">Power Details</h2>
                 <table class="table table-striped">

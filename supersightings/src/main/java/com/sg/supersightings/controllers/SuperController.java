@@ -5,6 +5,7 @@
  */
 package com.sg.supersightings.controllers;
 
+import com.sg.supersightings.dtos.Organization;
 import com.sg.supersightings.dtos.Power;
 import com.sg.supersightings.dtos.Super;
 import com.sg.supersightings.services.SuperService;
@@ -38,9 +39,11 @@ public class SuperController {
     public String getSuperById(@PathVariable Integer id, Model pageModel) {
         Super toGet = service.getSuperById(id);
         Power toAdd = service.getPowerById(toGet.getPowerId());
+        Organization org = service.getOrgbySuper(id);
         pageModel.addAttribute("power", toAdd);
         pageModel.addAttribute("superId", id);
         pageModel.addAttribute("super", toGet);
+        pageModel.addAttribute("organization", org);
 
         return "superdetails";
     }
@@ -49,18 +52,20 @@ public class SuperController {
     public String displayAddSuper(Model pageModel) {
         List<Power> allPowers = service.getAllPowers();
         pageModel.addAttribute("powers", allPowers);
+        
+        List<Organization> allOrgs = service.getAllOrganizations();
+        pageModel.addAttribute("orgs", allOrgs);
 
         return "addsuper";
     }
 
     @PostMapping("addsuper")
-    public String addSuper(HttpServletRequest request, Super toAdd, Model pageModel) {
+    public String addSuper(HttpServletRequest request, Super toAdd) {
         Integer id = Integer.parseInt(request.getParameter("powerId"));
-
+        Integer orgId = Integer.parseInt(request.getParameter("orgId"));
+        Organization org = service.getOrgById(orgId);
         toAdd.setPowerId(id);
-
-        Super toReturn = service.addSuper(toAdd);
-        pageModel.addAttribute("newsuper", toReturn);
+        service.addSuper(toAdd, org);
 
         return "redirect:/supers";
     }

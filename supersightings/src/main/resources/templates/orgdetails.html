@@ -25,9 +25,7 @@ and open the template in the editor.
             .bg {
                 background: rgba(0,0,0,.7);
             }
-            hr {
-                border-top: 1px solid dimgray;
-            }
+           
         </style>
     </head>
     <body>
@@ -58,31 +56,58 @@ and open the template in the editor.
 
         <div class="row m-4 border border-dark bg" style="color: whitesmoke">
             <div class="col text-center m-3">
-                <h2>Edit Power</h2><hr/>
-                <form action="editpower" method="POST">
-                    <div class="form-group row">
-                        <label for="powerName" class="col-3 col-form-label"><h5>
-                                Power Name: </h5></label>
-                        <div class="col-9">
-                            <input name="powerName"  th:value="${power.powerName}" 
-                                   id="powerNameInput" class="form-control"/>
-                        </div>
+                <h1 style="font-weight:bold" th:text="${organization.orgName}">Organization Details</h1>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Organization Name</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td th:text="${organization.orgId}">ID</td>
+                            <td th:text="${organization.orgName}">Organization Name</td>
+                            <td th:text="${organization.orgDescription}">Description</td>
+                        </tr>
+                    </tbody>
+                </table><hr>
+                <h4 th:text="${organization.orgName}+'&#8217;s Members'">Members</h4>
+                <div class="row m-4 border border-dark">
+                    <div class="col text-center m-3">
+                        <h5>Members</h5>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Super Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="super: ${supers}">
+                                    <td th:text="${super.superId}">Super ID</td>
+                                    <td><a class="btn-outline-danger " href="#" th:href="${'/superdetails/' + super.superId}" th:text="${super.superName}">Super Name</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="form-group row">
-                        <label for="powerDescription" class="col-3 col-form-label"><h5>
-                                Power Description: </h5></label>
-                        <div class="col-9">
-                            <input name="powerDescription"  th:value="${power.powerDescription}" 
-                                   id="powerDescriptionInput" class="form-control"/>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-danger">Edit Power</button>
-                    <input type="hidden" th:value="${powerId}" name="powerId"/>
-                </form>
+                </div>
             </div>
         </div>
     </div>
 
+
+
+
+    <div class="row">
+        <div class="col text-center m-3">
+            <a class="btn btn-outline-danger btn-block" href="#" th:href="@{/editorg(id=${orgId})}">Edit</a>
+        </div>
+        <div class="col text-center m-3">
+            <a class="btn btn-outline-danger btn-block" href="#" th:href="@{/deleteorg(id=${orgId})}">Delete</a>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 

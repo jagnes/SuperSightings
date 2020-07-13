@@ -5,8 +5,10 @@
  */
 package com.sg.supersightings.services;
 
+import com.sg.supersightings.daos.OrganizationDaoDB;
 import com.sg.supersightings.daos.PowerDaoDB;
 import com.sg.supersightings.daos.SuperDaoDB;
+import com.sg.supersightings.dtos.Organization;
 import com.sg.supersightings.dtos.Power;
 import com.sg.supersightings.dtos.Super;
 import java.util.List;
@@ -26,7 +28,8 @@ public class SuperService {
     @Autowired
     SuperDaoDB sDao;
     
-    
+    @Autowired
+    OrganizationDaoDB oDao;
 
     public List<Power> getAllPowers() {
         return pDao.getAllPowers();
@@ -56,8 +59,8 @@ public class SuperService {
         return sDao.getSuperById(id);
     }
 
-    public Super addSuper(Super toAdd) {
-        return sDao.addSuper(toAdd);
+    public Super addSuper(Super toAdd, Organization org) {
+        return sDao.addSuper(toAdd, org);
     }
 
     public void deleteSuperById(Integer id) {
@@ -66,6 +69,30 @@ public class SuperService {
 
     public void editSuper(Super toEdit) {
         sDao.editSuper(toEdit);
+    }
+
+    public List<Organization> getAllOrganizations() {
+        return oDao.getAllOrganizations();
+    }
+
+    public Organization getOrgById(Integer id) {
+        return oDao.getOrgById(id);
+    }
+
+    public List<Super> getSupersByOrg(Integer id) {
+        return oDao.getSupersByOrg(id);
+    }
+
+    public void deleteOrgById(Integer id) {
+        oDao.deleteOrgById(id);
+    }
+
+    public Organization getOrgbySuper(Integer id) {
+        return sDao.getOrgBySuper(id);
+    }
+
+    public void addOrganization(Organization toAdd) {
+        oDao.addOrganization(toAdd);
     }
     
     

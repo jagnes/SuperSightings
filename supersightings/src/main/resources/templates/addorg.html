@@ -58,49 +58,80 @@ and open the template in the editor.
 
         <div class="row m-4 border border-dark bg" style="color: whitesmoke">
             <div class="col text-center m-3">
-                <h2>Add Super</h2><hr/>
-                <form action="addsuper" method="POST">
+                <h2>Add Organization</h2><hr/>
+                <form action="addorg" method="POST">
                     <div class="form-group row">
-                        <label for="superName" class="col-3 col-form-label"><h5>
-                                Super Name: </h5></label>
+                        <label for="orgName" class="col-3 col-form-label"><h5>
+                                Organization Name: </h5></label>
                         <div class="col-9">
-                            <input name="superName" 
-                                   id="superNameInput" class="form-control"/>
+                            <input name="orgName" 
+                                   id="orgNameInput" class="form-control"/>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="superDescription" class="col-3 col-form-label"><h5>
-                                Super Description: </h5></label>
+                        <label for="orgDescription" class="col-3 col-form-label"><h5>
+                                Organization Description: </h5></label>
                         <div class="col-9">
-                            <input name="superDescription" 
-                                   id="superDescriptionInput" class="form-control"/>
+                            <input name="orgDescription" 
+                                   id="orgDescriptionInput" class="form-control"/>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="power" class="col-3 col-form-label"><h5>
-                                Power: </h5></label>
+                        <label for="orgAddress" class="col-3 col-form-label"><h5>
+                                Organization Address: </h5></label>
                         <div class="col-9">
-                            <select id="power" name="powerId" class="form-control">
-                                <option value="0">Select a Power</option>
-                                <option th:each="power : ${powers}" 
-                                        th:value="${power.powerId}" 
-                                        th:text="${power.powerName}"></option>
-                            </select>
+                            <input name="orgAddress" 
+                                   id="orgAddressInput" class="form-control"/>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="organization" class="col-3 col-form-label"><h5>
-                                Organization: </h5></label>
-                        <div class="col-9">
-                            <select id="organization" name="orgId" class="form-control">
-                                <option value="0">Select an Organization</option>
-                                <option th:each="org : ${orgs}" 
-                                        th:value="${org.orgId}" 
-                                        th:text="${org.orgName}"></option>
-                            </select>
+                        <label for="orgCity" class="col-3 col-form-label"><h5>
+                                Organization City: </h5></label>
+                        <div class="col-3">
+                            <input name="orgCity" 
+                                   id="orgCityInput" class="form-control"/>
+                        </div>
+                        <label for="orgState" class="col-3 col-form-label"><h5>
+                                Organization State: </h5></label>
+                        <div class="col-3">
+                            <input name="orgState" 
+                                   id="orgStateInput" class="form-control"/>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-danger">Add Power</button>
+                    <div class="form-group row">
+                        <label for="orgZip" class="col-3 col-form-label"><h5>
+                                Organization Zip: </h5></label>
+                        <div class="col-3">
+                            <input name="orgZip" 
+                                   id="orgZipInput" class="form-control"/>
+                        </div>
+                        <label for="phone" class="col-3 col-form-label"><h5>
+                                Organization Phone: </h5></label>
+                        <div class="col-3">
+                            <input name="phone" 
+                                   id="phoneInput" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="row m-4 border border-dark bg">
+                        <div class="col text-center m-3">
+                            <h2 style="color: whitesmoke">Select Supers</h2>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr style="color: whitesmoke">
+                                        <th>Select supers to add</th>
+                                        <th>Super Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="super : ${supers}">
+                                        <td><input type="checkbox" name="checkedSupers" th:value="${super.superId}"></input></td>
+                                        <td th:text="${super.superName}">Super Name</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-danger">Add Organization</button>
                 </form>
             </div>
         </div>

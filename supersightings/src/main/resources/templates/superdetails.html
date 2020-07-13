@@ -12,15 +12,30 @@ and open the template in the editor.
         <title>Super Sightings</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body, html {
+                height: 100%;
+                margin: 0;
+            }
+            body {
+                background: url("https://i.imgur.com/zjvxTZ1.png"); 
+                background-size: cover;
+                height: 100%;
+            }
+            .bg {
+                background: rgba(0,0,0,.7);
+            }
+           
+        </style>
     </head>
     <body>
         <div class="container">
             <div class="row m-4">
                 <div class="col">
-                    <a class="btn btn-outline-danger btn-block" style="font-size: xx-large; font-weight: bold" href="/">Super Sightings</a>
+                    <a class="btn btn-outline-danger btn-block bg" style="font-size: 50px; font-weight: bold" href="/">Super Sightings</a>
                 </div>
             </div>
-            <div class="row m-4 border border-dark">
+            <div class="row m-4 border border-dark bg">
                 <div class="col text-center m-3">
                     <a href="/sightings" class="btn btn-outline-danger btn-lg">Sightings</a>
                 </div>
@@ -39,15 +54,16 @@ and open the template in the editor.
             </div>
         </div>
 
-        <div class="row m-4 border border-dark">
+        <div class="row m-4 border border-dark bg" style="color: whitesmoke">
             <div class="col text-center m-3">
-                <h1 th:text="${super.superName}">Super Details</h1>
+                <h1 style="font-weight:bold" th:text="${super.superName}">Super Details</h1>
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Super Name</th>
                             <th>Description</th>
+                            <th>Organization</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,6 +71,7 @@ and open the template in the editor.
                             <td th:text="${super.superId}">ID</td>
                             <td th:text="${super.superName}">Super Name</td>
                             <td th:text="${super.superDescription}">Super Description</td>
+                            <td><a class="btn-outline-danger " href="#" th:href="${'/orgdetails/' + organization.orgId}" th:text="${organization.orgName}">Organization</a></td>
                         </tr>
                     </tbody>
                 </table><hr>

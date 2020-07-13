@@ -5,6 +5,7 @@
  */
 package com.sg.supersightings.dtos;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -15,11 +16,13 @@ public class Organization {
     
     private int orgId;
     private String orgName;
+    private String orgDescription;
     private String orgAddress;
     private String orgCity;
     private String orgState;
     private String orgZip;
     private String phone;
+    private List<Super> supers;
 
     /**
      * @return the orgId
@@ -49,6 +52,20 @@ public class Organization {
         this.orgName = orgName;
     }
 
+    /**
+     * @return the orgDescription
+     */
+    public String getOrgDescription() {
+        return orgDescription;
+    }
+
+    /**
+     * @param orgDescription the orgDescription to set
+     */
+    public void setOrgDescription(String orgDescription) {
+        this.orgDescription = orgDescription;
+    }
+    
     /**
      * @return the orgAddress
      */
@@ -119,16 +136,32 @@ public class Organization {
         this.phone = phone;
     }
 
+    /**
+     * @return the supers
+     */
+    public List<Super> getSupers() {
+        return supers;
+    }
+
+    /**
+     * @param supers the supers to set
+     */
+    public void setSupers(List<Super> supers) {
+        this.supers = supers;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 97 * hash + this.orgId;
-        hash = 97 * hash + Objects.hashCode(this.orgName);
-        hash = 97 * hash + Objects.hashCode(this.orgAddress);
-        hash = 97 * hash + Objects.hashCode(this.orgCity);
-        hash = 97 * hash + Objects.hashCode(this.orgState);
-        hash = 97 * hash + Objects.hashCode(this.orgZip);
-        hash = 97 * hash + Objects.hashCode(this.phone);
+        hash = 71 * hash + this.orgId;
+        hash = 71 * hash + Objects.hashCode(this.orgName);
+        hash = 71 * hash + Objects.hashCode(this.orgDescription);
+        hash = 71 * hash + Objects.hashCode(this.orgAddress);
+        hash = 71 * hash + Objects.hashCode(this.orgCity);
+        hash = 71 * hash + Objects.hashCode(this.orgState);
+        hash = 71 * hash + Objects.hashCode(this.orgZip);
+        hash = 71 * hash + Objects.hashCode(this.phone);
+        hash = 71 * hash + Objects.hashCode(this.supers);
         return hash;
     }
 
@@ -150,6 +183,9 @@ public class Organization {
         if (!Objects.equals(this.orgName, other.orgName)) {
             return false;
         }
+        if (!Objects.equals(this.orgDescription, other.orgDescription)) {
+            return false;
+        }
         if (!Objects.equals(this.orgAddress, other.orgAddress)) {
             return false;
         }
@@ -165,8 +201,13 @@ public class Organization {
         if (!Objects.equals(this.phone, other.phone)) {
             return false;
         }
+        if (!Objects.equals(this.supers, other.supers)) {
+            return false;
+        }
         return true;
     }
+
+    
     
     
 }

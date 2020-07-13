@@ -25,8 +25,17 @@ and open the template in the editor.
             .bg {
                 background: rgba(0,0,0,.7);
             }
-            hr {
-                border-top: 1px solid dimgray;
+            tr:hover {
+                background-color:dimgray
+            }
+            .table a:hover {
+                background-color:dimgray
+            }
+            .table a {
+                display: block;
+                text-decoration: none;
+                margin: 0;
+                padding: 0;
             }
         </style>
     </head>
@@ -56,29 +65,24 @@ and open the template in the editor.
             </div>
         </div>
 
-        <div class="row m-4 border border-dark bg" style="color: whitesmoke">
+        <div class="row m-4 border border-dark bg">
             <div class="col text-center m-3">
-                <h2>Edit Power</h2><hr/>
-                <form action="editpower" method="POST">
-                    <div class="form-group row">
-                        <label for="powerName" class="col-3 col-form-label"><h5>
-                                Power Name: </h5></label>
-                        <div class="col-9">
-                            <input name="powerName"  th:value="${power.powerName}" 
-                                   id="powerNameInput" class="form-control"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="powerDescription" class="col-3 col-form-label"><h5>
-                                Power Description: </h5></label>
-                        <div class="col-9">
-                            <input name="powerDescription"  th:value="${power.powerDescription}" 
-                                   id="powerDescriptionInput" class="form-control"/>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-danger">Edit Power</button>
-                    <input type="hidden" th:value="${powerId}" name="powerId"/>
-                </form>
+                <h2 style="color: whitesmoke">Organizations</h2>
+                <a class="btn btn-outline-danger btn-block m-3" href="/addorg">Add Organization</a>
+                <table class="table">
+                    <thead>
+                        <tr style="color: whitesmoke">
+                            <th>ID</th>
+                            <th>Organization Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="organization : ${allOrganizations}">
+                            <td th:text="${organization.orgId}" style="color: whitesmoke">Org ID</td>
+                            <td><a class="btn-outline-danger " href="#" th:href="${'/orgdetails/' + organization.orgId}" th:text="${organization.orgName}">Org Name</a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

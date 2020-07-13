@@ -21,7 +21,21 @@ and open the template in the editor.
                 background: url("https://i.imgur.com/6nd9qoT.png"); 
                 background-size: cover;
                 height: 100%;
-                overflow: hidden;
+            }
+            .bg {
+                background: rgba(0,0,0,.7);
+            }
+            tr:hover {
+                background-color:dimgray
+            }
+            .table a:hover {
+                background-color:dimgray
+            }
+            .table a {
+                display: block;
+                text-decoration: none;
+                margin: 0;
+                padding: 0;
             }
         </style>
     </head>
@@ -29,10 +43,10 @@ and open the template in the editor.
         <div class="container">
             <div class="row m-4">
                 <div class="col">
-                    <a class="btn btn-outline-danger btn-block" style="font-size: xx-large; font-weight: bold" href="/">Super Sightings</a>
+                    <a class="btn btn-outline-danger btn-block bg" style="font-size: 50px; font-weight: bold" href="/">Super Sightings</a>
                 </div>
             </div>
-            <div class="row m-4 border border-dark">
+            <div class="row m-4 border border-dark bg">
                 <div class="col text-center m-3">
                     <a href="/sightings" class="btn btn-outline-danger btn-lg">Sightings</a>
                 </div>
@@ -51,20 +65,20 @@ and open the template in the editor.
             </div>
         </div>
 
-        <div class="row m-4 border border-dark">
+        <div class="row m-4 border border-dark bg">
             <div class="col text-center m-3">
-                <h2>Supers</h2>
+                <h2 style="color: whitesmoke">Supers</h2>
                 <a class="btn btn-outline-danger btn-block m-3" href="/addsuper">Add Super</a>
                 <table class="table table-striped">
                     <thead>
-                        <tr>
+                        <tr style="color: whitesmoke">
                             <th>ID</th>
                             <th>Super Name</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="super : ${allSupers}">
-                            <td th:text="${super.superId}">Super ID</td>
+                            <td th:text="${super.superId}" style="color: whitesmoke">Super ID</td>
                             <td><a class="btn-outline-danger " href="#" th:href="${'/superdetails/' + super.superId}" th:text="${super.superName}">Super Name</a></td>
                         </tr>
                     </tbody>
