@@ -37,7 +37,7 @@ public class OrganizationController {
     }
     
     @GetMapping("orgdetails/{id}")
-    public String getOrgById(@PathVariable Integer id, Model pageModel) {
+    public String displayOrgDetails(@PathVariable Integer id, Model pageModel) {
         Organization toGet = service.getOrgById(id);
         List<Super> supers = service.getSupersByOrg(id);
         
@@ -73,5 +73,17 @@ public class OrganizationController {
         service.addOrganization(toAdd);
         
         return "redirect:/organizations";
+    }
+    
+    @GetMapping("editorg")
+    public String displayEditOrg(HttpServletRequest request, Model pageModel) {
+        Integer id = Integer.parseInt(request.getParameter("id"));
+        Organization org = service.getOrgById(id);
+        pageModel.addAttribute("org", org);
+        
+        List<Super> allSupers = service.getAllSupers();
+        pageModel.addAttribute("supers", allSupers);
+        
+        return "editorg";
     }
 }
