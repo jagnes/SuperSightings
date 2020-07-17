@@ -62,5 +62,3 @@ create table sightings (
 	foreign key fk_sighting_loc(locId)
 		references locations(locId)
 );
-    
-    SET GLOBAL FOREIGN_KEY_CHECKS=1;

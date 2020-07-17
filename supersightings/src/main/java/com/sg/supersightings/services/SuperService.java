@@ -59,8 +59,8 @@ public class SuperService {
         return sDao.getSuperById(id);
     }
 
-    public Super addSuper(Super toAdd, Organization org) {
-        return sDao.addSuper(toAdd, org);
+    public Super addSuper(Super toAdd) {
+        return sDao.addSuper(toAdd);
     }
 
     public void deleteSuperById(Integer id) {
@@ -93,6 +93,10 @@ public class SuperService {
 
     public void addOrganization(Organization toAdd) {
         oDao.addOrganization(toAdd);
+    }
+
+    public void editOrganization(Organization toEdit) {
+        oDao.editOrganization(toEdit);
     }
     
     

@@ -86,4 +86,20 @@ public class OrganizationController {
         
         return "editorg";
     }
+    
+    @PostMapping("editorg")
+    public String editOrg(HttpServletRequest request, Organization toEdit) {
+        List<Super> supers = new ArrayList<>();
+        for (String id : request.getParameterValues("checkedSupers")) {
+            supers.add(service.getSuperById(Integer.parseInt(id)));
+        }
+        toEdit.setSupers(supers);
+        
+        Integer id = Integer.parseInt(request.getParameter("orgId"));
+        toEdit.setOrgId(id);
+        
+        service.editOrganization(toEdit);
+
+        return "redirect:/orgdetails/" + toEdit.getOrgId();
+    }
 }

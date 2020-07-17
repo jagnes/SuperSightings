@@ -44,8 +44,8 @@ public class OrganizationDaoDB {
     }
 
     public void deleteOrgById(Integer id) {
+        template.update("delete from organizations_supers where orgId =?", id);
         template.update("delete from organizations where orgId =?", id);
-
         template.update("alter table organizations auto_increment =?", id);
     }
 
@@ -73,6 +73,33 @@ public class OrganizationDaoDB {
                     toAdd.getOrgId(), s.getSuperId());
         }
     }
+
+    public void editOrganization(Organization toEdit) {
+        template.update("update organizations set orgName=?, orgDescription=?, orgAddress=?,"
+                + " orgCity=?, orgState=?, orgZip=?, phone=? where orgId=?",
+                toEdit.getOrgName(),
+                toEdit.getOrgDescription(),
+                toEdit.getOrgAddress(),
+                toEdit.getOrgCity(),
+                toEdit.getOrgState(),
+                toEdit.getOrgZip(),
+                toEdit.getPhone(),
+                toEdit.getOrgId());
+        
+        template.update("delete from organizations_supers where orgId =?", toEdit.getOrgId());
+        
+        insertSupersInOrg(toEdit);
+    }
+
+//    private void updateSupersInOrg(Organization toEdit) {
+//        
+//        
+//        final String UPDATE_SUPERS = "update organizations_supers set orgId=?, superId=? where orgId=?;";
+//        for (Super s : toEdit.getSupers()) {
+//            template.update(UPDATE_SUPERS,
+//                    toEdit.getOrgId(), s.getSuperId(), toEdit.getOrgId());
+//        }
+//    }
 
     private static class OrganizationMapper implements RowMapper<Organization> {
 

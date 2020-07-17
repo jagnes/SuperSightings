@@ -39,11 +39,11 @@ public class SuperController {
     public String getSuperById(@PathVariable Integer id, Model pageModel) {
         Super toGet = service.getSuperById(id);
         Power toAdd = service.getPowerById(toGet.getPowerId());
-        Organization org = service.getOrgbySuper(id);
+//        Organization org = service.getOrgbySuper(id);
         pageModel.addAttribute("power", toAdd);
         pageModel.addAttribute("superId", id);
         pageModel.addAttribute("super", toGet);
-        pageModel.addAttribute("organization", org);
+//        pageModel.addAttribute("organization", org);
 
         return "superdetails";
     }
@@ -53,8 +53,8 @@ public class SuperController {
         List<Power> allPowers = service.getAllPowers();
         pageModel.addAttribute("powers", allPowers);
         
-        List<Organization> allOrgs = service.getAllOrganizations();
-        pageModel.addAttribute("orgs", allOrgs);
+//        List<Organization> allOrgs = service.getAllOrganizations();
+//        pageModel.addAttribute("orgs", allOrgs);
 
         return "addsuper";
     }
@@ -62,10 +62,10 @@ public class SuperController {
     @PostMapping("addsuper")
     public String addSuper(HttpServletRequest request, Super toAdd) {
         Integer id = Integer.parseInt(request.getParameter("powerId"));
-        Integer orgId = Integer.parseInt(request.getParameter("orgId"));
-        Organization org = service.getOrgById(orgId);
+//        Integer orgId = Integer.parseInt(request.getParameter("orgId"));
+//        Organization org = service.getOrgById(orgId);
         toAdd.setPowerId(id);
-        service.addSuper(toAdd, org);
+        service.addSuper(toAdd);
 
         return "redirect:/supers";
     }

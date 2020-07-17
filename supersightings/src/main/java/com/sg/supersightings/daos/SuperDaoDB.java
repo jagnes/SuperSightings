@@ -38,14 +38,14 @@ public class SuperDaoDB {
         return toGet;
     }
 
-    public Super addSuper(Super toAdd, Organization org) {
+    public Super addSuper(Super toAdd) {
         template.update("insert into supers (superName, superDescription, powerId) values (?, ?, ?);",
                 toAdd.getSuperName(), toAdd.getSuperDescription(), toAdd.getPowerId());
         int id = template.queryForObject("select last_insert_id()", Integer.class);
         toAdd.setSuperId(id);
         
-        template.update("insert into organizations_supers (orgId, superId) values (?, ?);",
-                org.getOrgId(), id);
+//        template.update("insert into organizations_supers (orgId, superId) values (?, ?);",
+//                org.getOrgId(), id);
         
         return toAdd;
     }

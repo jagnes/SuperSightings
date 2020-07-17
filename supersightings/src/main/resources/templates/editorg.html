@@ -18,7 +18,7 @@ and open the template in the editor.
                 margin: 0;
             }
             body {
-                background: url("https://i.imgur.com/zjvxTZ1.png"); 
+                background: url("https://i.imgur.com/s1ypks4.jpg"); 
                 background-size: cover;
                 height: 100%;
             }
@@ -65,7 +65,8 @@ and open the template in the editor.
                                 Organization Name: </h5></label>
                         <div class="col-9">
                             <input name="orgName" th:value="${org.orgName}"
-                                   id="orgNameInput" class="form-control"/>
+                                   id="orgNameInput" class="form-control"
+                                    placeholder="Name of Organization"/>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -73,7 +74,8 @@ and open the template in the editor.
                                 Organization Description: </h5></label>
                         <div class="col-9">
                             <input name="orgDescription" th:value="${org.orgDescription}" 
-                                   id="orgDescriptionInput" class="form-control"/>
+                                   id="orgDescriptionInput" class="form-control"
+                                    placeholder="Short description about organization"/>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -81,7 +83,8 @@ and open the template in the editor.
                                 Organization Address: </h5></label>
                         <div class="col-9">
                             <input name="orgAddress" th:value="${org.orgAddress}" 
-                                   id="orgAddressInput" class="form-control"/>
+                                   id="orgAddressInput" class="form-control" 
+                                   placeholder="123 Fake St"/>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -89,13 +92,15 @@ and open the template in the editor.
                                 Organization City: </h5></label>
                         <div class="col-3">
                             <input name="orgCity" th:value="${org.orgCity}" 
-                                   id="orgCityInput" class="form-control"/>
+                                   id="orgCityInput" class="form-control" 
+                                   placeholder="Minneapolis"/>
                         </div>
                         <label for="orgState" class="col-3 col-form-label"><h5>
                                 Organization State: </h5></label>
                         <div class="col-3">
                             <input name="orgState" th:value="${org.orgState}" 
-                                   id="orgStateInput" class="form-control"/>
+                                   id="orgStateInput" class="form-control"
+                                   placeholder="MN"/>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -103,13 +108,15 @@ and open the template in the editor.
                                 Organization Zip: </h5></label>
                         <div class="col-3">
                             <input name="orgZip" th:value="${org.orgZip}" 
-                                   id="orgZipInput" class="form-control"/>
+                                   id="orgZipInput" class="form-control"
+                                   placeholder="12345"/>
                         </div>
                         <label for="phone" class="col-3 col-form-label"><h5>
                                 Organization Phone: </h5></label>
                         <div class="col-3">
                             <input name="phone" th:value="${org.phone}" 
-                                   id="phoneInput" class="form-control"/>
+                                   id="phoneInput" class="form-control"
+                                   placeholder="000-000-0000"/>
                         </div>
                     </div>
                     <div class="row m-4 border border-dark bg">
@@ -132,7 +139,7 @@ and open the template in the editor.
                         </div>
                     </div>
                     <button type="submit" class="btn btn-danger">Edit Organization</button>
-                    <input type="hidden" th:value="${orgId}" name="orgId"/>
+                    <input type="hidden" th:value="${org.orgId}" name="orgId"/>
                 </form>
             </div>
         </div>

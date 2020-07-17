@@ -18,7 +18,7 @@ and open the template in the editor.
                 margin: 0;
             }
             body {
-                background: url("https://i.imgur.com/zjvxTZ1.png"); 
+                background: url("https://i.imgur.com/HfOchVF.png"); 
                 background-size: cover;
                 height: 100%;
             }
@@ -63,7 +63,7 @@ and open the template in the editor.
                             <th>ID</th>
                             <th>Super Name</th>
                             <th>Description</th>
-                            <th>Organization</th>
+<!--                            <th>Organization</th>-->
                         </tr>
                     </thead>
                     <tbody>
@@ -71,14 +71,14 @@ and open the template in the editor.
                             <td th:text="${super.superId}">ID</td>
                             <td th:text="${super.superName}">Super Name</td>
                             <td th:text="${super.superDescription}">Super Description</td>
-                            <td><a class="btn-outline-danger " href="#" th:href="${'/orgdetails/' + organization.orgId}" th:text="${organization.orgName}">Organization</a></td>
+<!--                            <td><a class="btn-outline-danger " href="#" th:href="${'/orgdetails/' + organization.orgId}" th:text="${organization.orgName}">Organization</a><br/></td>-->
                         </tr>
                     </tbody>
                 </table><hr>
-                <h4 th:text="${super.superName}+'&#8217;s Power'">Power</h4>
+                <h3 th:text="${super.superName}+'&#8217;s Power'">Power</h3>
                 <div class="row m-4 border border-dark">
                     <div class="col text-center m-3">
-                        <h5 th:text="${power.powerName}">Power Details</h5>
+                        <h4><a class="btn-outline-danger " href="#" th:href="${'/powerdetails/' + power.powerId}" th:text="${power.powerName}">Power Details</a></h4>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
