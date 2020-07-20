@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+              crossorigin="anonymous">
+        <title>Super Sightings</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body, html {
+                height: 100%;
+                margin: 0;
+            }
+            body {
+                background: url("https://i.imgur.com/zjvxTZ1.png"); 
+                background-size: cover;
+                height: 100%;
+            }
+            .bg {
+                background: rgba(0,0,0,.7);
+            }
+            tr:hover {
+                background-color:dimgray
+            }
+            .table a:hover {
+                background-color:dimgray
+            }
+            .table a {
+                display: block;
+                text-decoration: none;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row m-4">
+                <div class="col">
+                    <a class="btn btn-outline-danger btn-block bg" style="font-size: 50px; font-weight: bold" href="/">Super Sightings</a>
+                </div>
+            </div>
+            <div class="row m-4 border border-dark bg">
+                <div class="col text-center m-3">
+                    <a href="/sightings" class="btn btn-outline-danger btn-lg">Sightings</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="/supers" class="btn btn-outline-danger btn-lg">Supers</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="/powers" class="btn btn-outline-danger btn-lg">Powers</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="/organizations" class="btn btn-outline-danger btn-lg">Organizations</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="/locations" class="btn btn-outline-danger btn-lg">Locations</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row m-4 border border-dark bg">
+            <div class="col text-center m-3">
+                <h2 style="color: whitesmoke">Sightings</h2>
+                <a class="btn btn-outline-danger btn-block m-3" href="/addsighting">Add Sighting</a>
+                <table class="table">
+                    <thead>
+                        <tr style="color: whitesmoke">
+                            <th>ID</th>
+                            <th>Super Name</th>
+                            <th>Location Name</th>
+                            <th>Sighting Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="sighting : ${allSightings}" style="color: whitesmoke">
+                            <td th:text="${sighting.sightingId}">Sighting Id</td>
+                            <td><a class="btn-outline-danger " href="#" th:href="${'/superdetails/' + sighting.superSighted.superId}" th:text="${sighting.superSighted.superName}">Super Name</a></td>
+                            <td><a class="btn-outline-danger " href="#" th:href="${'/locdetails/' + sighting.locSighted.locId}" th:text="${sighting.locSighted.locName}">Location Name</td>
+                            <td th:text="${sighting.sightingDate}" style="color: whitesmoke">Sighting Date</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" 
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" 
+    crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" 
+    crossorigin="anonymous"></script>
+</body>
+</html>

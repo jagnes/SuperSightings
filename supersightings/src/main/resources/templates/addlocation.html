@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+              crossorigin="anonymous">
+        <title>Super Sightings</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body, html {
+                height: 100%;
+                margin: 0;
+            }
+            body {
+                background: url("https://i.imgur.com/PAyLBy1.png"); 
+                background-size: cover;
+                height: 100%;
+            }
+            .bg {
+                background: rgba(0,0,0,.7);
+            }
+            hr {
+                border-top: 1px solid dimgray;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row m-4">
+                <div class="col">
+                    <a class="btn btn-outline-danger btn-block bg" style="font-size: 50px; font-weight: bold " href="/">Super Sightings</a>
+                </div>
+            </div>
+            <div class="row m-4 border border-dark bg">
+                <div class="col text-center m-3">
+                    <a href="sightings" class="btn btn-outline-danger btn-lg">Sightings</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="supers" class="btn btn-outline-danger btn-lg">Supers</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="powers" class="btn btn-outline-danger btn-lg">Powers</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="organizations" class="btn btn-outline-danger btn-lg">Organizations</a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="locations" class="btn btn-outline-danger btn-lg">Locations</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row m-4 border border-dark bg" style="color: whitesmoke">
+            <div class="col text-center m-3">
+                <h2>Add Location</h2><hr/>
+                <form action="addlocation" method="POST">
+                    <div class="form-group row">
+                        <label for="locName" class="col-3 col-form-label"><h5>
+                                Location Name: </h5></label>
+                        <div class="col-9">
+                            <input name="locName" placeholder="Name of Location" 
+                                   id="locNameInput" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="locDescription" class="col-3 col-form-label"><h5>
+                                Location Description: </h5></label>
+                        <div class="col-9">
+                            <input name="locDescription" placeholder="Short description about Location"
+                                   id="locDescriptionInput" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="locAddress" class="col-3 col-form-label"><h5>
+                                Location Address: </h5></label>
+                        <div class="col-3">
+                            <input name="locAddress" placeholder="123 Fake St" 
+                                   id="locAddressInput" class="form-control"/>
+                        </div>
+                        <label for="locCity" class="col-3 col-form-label"><h5>
+                                Location City: </h5></label>
+                        <div class="col-3">
+                            <input name="locCity" placeholder="Minneapolis" 
+                                   id="locCityInput" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="locState" class="col-3 col-form-label"><h5>
+                                Location State Abbreviation: </h5></label>
+                        <div class="col-3">
+                            <input name="locState" placeholder="MN" 
+                                   id="locStateInput" class="form-control"/>
+                        </div>
+                        <label for="locZip" class="col-3 col-form-label"><h5>
+                                Location Zip: </h5></label>
+                        <div class="col-3">
+                            <input name="locZip" placeholder="12345" 
+                                   id="locZipInput" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="locLatitude" class="col-3 col-form-label"><h5>
+                                Location Latitude: </h5></label>
+                        <div class="col-3">
+                            <input name="locLatitude" placeholder="45.000000" 
+                                   id="locLatInput" class="form-control"/>
+                        </div>
+                        <label for="locLongitude" class="col-3 col-form-label"><h5>
+                                Location Longitude </h5></label>
+                        <div class="col-3">
+                            <input name="locLongitude" placeholder="-93.000000" 
+                                   id="locLongInput" class="form-control"/>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-danger">Add Location</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" 
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" 
+    crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" 
+    crossorigin="anonymous"></script>
+</body>
+</html>

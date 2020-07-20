@@ -68,7 +68,7 @@ insert into organizations_supers (orgId, superId) values
     
 insert into locations (locName, locDescription, locAddress, locCity, locState, locZip, locLatitude, locLongitude) values
 	('US Bank Stadium', 'Home of the Minnesota Vikings', '401 Chicago Ave', 'Minneapolis', 'MN', '55415', 44.973411, -93.257621),
-    ('Minnehaha Park', 'Home to the Minnehaha Falls. One of the oldest and most populat parks in Minneapolis', '', 'Minneapolis', 'MN', '55417',  44.915001, -93.209999),
+    ('Minnehaha Park', 'Home to the Minnehaha Falls. One of the oldest and most populat parks in Minneapolis', 'Minnehaha Ave', 'Minneapolis', 'MN', '55417',  44.915001, -93.209999),
     ('Park Center Senior High', 'Public High School on the border of Brooklyn Park and Brooklyn Center, hence the name "Park Center"', '7300 Brooklyn Blvd', 'Brooklyn Park', 'MN', '55443', 45.111181, -93.350499);
     
 insert into sightings (superId, locId, sightingDate) values

@@ -5,11 +5,15 @@
  */
 package com.sg.supersightings.services;
 
+import com.sg.supersightings.daos.LocationDaoDB;
 import com.sg.supersightings.daos.OrganizationDaoDB;
 import com.sg.supersightings.daos.PowerDaoDB;
+import com.sg.supersightings.daos.SightingDaoDB;
 import com.sg.supersightings.daos.SuperDaoDB;
+import com.sg.supersightings.dtos.Location;
 import com.sg.supersightings.dtos.Organization;
 import com.sg.supersightings.dtos.Power;
+import com.sg.supersightings.dtos.Sighting;
 import com.sg.supersightings.dtos.Super;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +34,12 @@ public class SuperService {
     
     @Autowired
     OrganizationDaoDB oDao;
+    
+    @Autowired
+    LocationDaoDB lDao;
+    
+    @Autowired
+    SightingDaoDB siDao;
 
     public List<Power> getAllPowers() {
         return pDao.getAllPowers();
@@ -97,6 +107,34 @@ public class SuperService {
 
     public void editOrganization(Organization toEdit) {
         oDao.editOrganization(toEdit);
+    }
+
+    public List<Location> getAllLocations() {
+        return lDao.getAllLocations();
+    }
+
+    public Location getLocById(Integer id) {
+        return lDao.getLocById(id);
+    }
+
+    public void addLocation(Location toAdd) {
+        lDao.addLocation(toAdd);
+    }
+
+    public void deleteLocById(Integer id) {
+        lDao.deleteLocById(id);
+    }
+
+    public void editLocation(Location toEdit) {
+        lDao.editLocation(toEdit);
+    }
+
+    public List<Sighting> getAllSightings() {
+        return siDao.getAllSightings();
+    }
+
+    public Sighting getSightingById(Integer id) {
+        return siDao.getSightingById(id);
     }
     
     
