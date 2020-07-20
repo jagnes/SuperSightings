@@ -136,6 +136,16 @@ public class SuperService {
     public Sighting getSightingById(Integer id) {
         return siDao.getSightingById(id);
     }
+
+    public void deleteSightingById(Integer id) {
+        siDao.deleteSightingById(id);
+    }
     
-    
+    public void addSighting(Sighting toAdd) {
+        siDao.addSighting(toAdd);
+    }
+
+    public void editSighting(Sighting toEdit) {
+        siDao.editSighting(toEdit);
+    }
 }

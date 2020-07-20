@@ -39,4 +39,10 @@ public class SightingController {
         
         return "sightingdetails";
     }
+    
+    @GetMapping("addsighting")
+    public String addSighting(Model pageModel) {
+        
+        return "addsighting";
+    }
 }

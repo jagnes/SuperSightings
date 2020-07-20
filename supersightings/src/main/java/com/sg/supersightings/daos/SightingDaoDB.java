@@ -21,23 +21,49 @@ import org.springframework.stereotype.Repository;
  * @author jweez
  */
 @Repository
-public class SightingDaoDB {
-    
+public class SightingDaoDB implements SightingDao {
+
     @Autowired
     JdbcTemplate template;
-    
+
     @Autowired
     SuperDaoDB sDao;
-    
+
     @Autowired
     LocationDaoDB lDao;
 
+    @Override
     public List<Sighting> getAllSightings() {
         return template.query("select * from sightings", new SightingMapper());
     }
 
+    @Override
     public Sighting getSightingById(Integer id) {
         return template.queryForObject("select * from sightings where sightingId=?", new SightingMapper(), id);
+    }
+
+    @Override
+    public void deleteSightingById(Integer id) {
+        template.update("delete from sightings where sightingId =?", id);
+        template.update("alter table sightings auto_increment =?", id);
+    }
+
+    @Override
+    public void addSighting(Sighting toAdd) {
+        template.update("insert into sightings (superId, locId, sightingDate) values (?,?,?)",
+                toAdd.getSuperSighted().getSuperId(),
+                toAdd.getLocSighted().getLocId(),
+                toAdd.getSightingDate());
+    }
+
+    @Override
+    public void editSighting(Sighting toEdit) {
+        template.update("update sightings set superId=?, locId=?, sightingDate=?,"
+                + " where orgId=?",
+                toEdit.getSuperSighted().getSuperId(),
+                toEdit.getLocSighted().getLocId(),
+                toEdit.getSightingDate(),
+                toEdit.getSightingId());
     }
 
     private class SightingMapper implements RowMapper<Sighting> {

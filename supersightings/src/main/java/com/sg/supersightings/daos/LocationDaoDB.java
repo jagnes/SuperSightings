@@ -20,21 +20,24 @@ import org.springframework.stereotype.Repository;
  * @author jweez
  */
 @Repository
-public class LocationDaoDB {
+public class LocationDaoDB implements LocationDao {
     
     @Autowired
     JdbcTemplate template;
 
+    @Override
     public List<Location> getAllLocations() {
         List<Location> allLocations = template.query("select * from locations", new LocationMapper());
         
         return allLocations;
     }
 
+    @Override
     public Location getLocById(Integer id) {
         return template.queryForObject("select * from locations where locId=?", new LocationMapper(), id);
     }
 
+    @Override
     public void addLocation(Location toAdd) {
         template.update("insert into locations(locName, locDescription, locAddress,"
                 + " locCity, locState, locZip, locLatitude, locLongitude) values (?,?,?,?,?,?,?,?);",
@@ -48,12 +51,14 @@ public class LocationDaoDB {
                 toAdd.getLocLongitude());
     }
 
+    @Override
     public void deleteLocById(Integer id) {
         template.update("delete from locations where locId=?;", id);
         
         template.update("alter table locations auto_increment =?", id);
     }
 
+    @Override
     public void editLocation(Location toEdit) {
         template.update("update locations set locName=?, locDescription=?, locAddress=?,"
                 + " locCity=?, locState=?, locZip=?, locLatitude=?, locLongitude=? where locId=?",

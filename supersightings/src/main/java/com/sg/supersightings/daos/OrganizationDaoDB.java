@@ -20,7 +20,7 @@ import org.springframework.stereotype.Repository;
  * @author jweez
  */
 @Repository
-public class OrganizationDaoDB {
+public class OrganizationDaoDB implements OrganizationDao {
 
     @Autowired
     JdbcTemplate template;
@@ -28,14 +28,17 @@ public class OrganizationDaoDB {
     @Autowired
     SuperDaoDB sDao;
 
+    @Override
     public List<Organization> getAllOrganizations() {
         return template.query("select * from organizations", new OrganizationMapper());
     }
 
+    @Override
     public Organization getOrgById(Integer id) {
         return template.queryForObject("select * from organizations where orgId =?", new OrganizationMapper(), id);
     }
 
+    @Override
     public List<Super> getSupersByOrg(Integer id) {
         return template.query("select s.superId, s.superName, s.superDescription, s.powerId from organizations o"
                 + " inner join organizations_supers os on o.orgId = os.orgId"
@@ -43,12 +46,14 @@ public class OrganizationDaoDB {
                 new SuperMapper(), id);
     }
 
+    @Override
     public void deleteOrgById(Integer id) {
         template.update("delete from organizations_supers where orgId =?", id);
         template.update("delete from organizations where orgId =?", id);
         template.update("alter table organizations auto_increment =?", id);
     }
 
+    @Override
     public void addOrganization(Organization toAdd) {
         template.update("insert into organizations (orgName, orgDescription, orgAddress,"
                 + " orgCity, orgState, orgZip, phone) values (?,?,?,?,?,?,?)",
@@ -74,6 +79,7 @@ public class OrganizationDaoDB {
         }
     }
 
+    @Override
     public void editOrganization(Organization toEdit) {
         template.update("update organizations set orgName=?, orgDescription=?, orgAddress=?,"
                 + " orgCity=?, orgState=?, orgZip=?, phone=? where orgId=?",

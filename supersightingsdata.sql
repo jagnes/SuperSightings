@@ -78,8 +78,8 @@ insert into sightings (superId, locId, sightingDate) values
     (5, 2, '2020-06-25'),
     (1, 3, '2020-07-04');
     
-select * from powers;
-select * from supers;
+select * from locations;
+select * from sightings;
 select * from organizations;
 select *
 from organizations_supers;

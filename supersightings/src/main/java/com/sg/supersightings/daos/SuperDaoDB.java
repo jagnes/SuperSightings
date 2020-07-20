@@ -21,23 +21,26 @@ import org.springframework.stereotype.Repository;
  * @author jweez
  */
 @Repository
-public class SuperDaoDB {
+public class SuperDaoDB implements SuperDao {
 
     @Autowired
     JdbcTemplate template;
 
+    @Override
     public List<Super> getAllSupers() {
         List<Super> allSupers = template.query("select * from supers", new SuperMapper());
 
         return allSupers;
     }
 
+    @Override
     public Super getSuperById(Integer id) {
         Super toGet = template.queryForObject(("select * from supers where superId =?"), new SuperMapper(), id);
     
         return toGet;
     }
 
+    @Override
     public Super addSuper(Super toAdd) {
         template.update("insert into supers (superName, superDescription, powerId) values (?, ?, ?);",
                 toAdd.getSuperName(), toAdd.getSuperDescription(), toAdd.getPowerId());
@@ -50,12 +53,14 @@ public class SuperDaoDB {
         return toAdd;
     }
 
+    @Override
     public void deleteSuperById(Integer id) {
         template.update("delete from supers where superId =?", id);
         
         template.update("alter table supers auto_increment =?", id);
     }
 
+    @Override
     public void editSuper(Super toEdit) {
         template.update("update supers set superName =?, superDescription =?, powerId =? where superId =?",
                 toEdit.getSuperName(),
@@ -64,6 +69,7 @@ public class SuperDaoDB {
                 toEdit.getSuperId());
     }
 
+    @Override
     public Organization getOrgBySuper(Integer id) {
         return template.queryForObject("select o.orgId, o.orgName from organizations o"
                 + " inner join organizations_supers os on o.orgId = os.orgId"

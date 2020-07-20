@@ -19,23 +19,26 @@ import org.springframework.stereotype.Repository;
  * @author jweez
  */
 @Repository
-public class PowerDaoDB {
+public class PowerDaoDB implements PowerDao {
     
     @Autowired
     JdbcTemplate template;
 
+    @Override
     public List<Power> getAllPowers() {
         List<Power> allPowers = template.query("select * from powers", new PowerMapper());
         
         return allPowers;
     }
 
+    @Override
     public Power getPowerById(Integer id) {
         Power toGet = template.queryForObject(("select * from powers where powerid =?"), new PowerMapper(), id);
     
         return toGet;
     }
 
+    @Override
     public Power addPower(Power toAdd) {
         template.update("insert into powers (powerName, powerDescription) values (?, ?);",
                 toAdd.getPowerName(), toAdd.getPowerDescription());
@@ -45,12 +48,14 @@ public class PowerDaoDB {
         return toAdd;
     }
     
+    @Override
     public void deletePowerById(Integer id) {
         template.update("delete from powers where powerId =?", id);
         
         template.update("alter table powers auto_increment =?", id);
     }
 
+    @Override
     public void editPower(Power toEdit) {
         template.update("update powers set powerName =?, powerDescription =? where powerId =?",
                 toEdit.getPowerName(),

@@ -80,7 +80,7 @@ and open the template in the editor.
                     </thead>
                     <tbody>
                         <tr th:each="sighting : ${allSightings}" style="color: whitesmoke">
-                            <td th:text="${sighting.sightingId}">Sighting Id</td>
+                            <td><a class="btn-outline-danger " href="#" th:href="${'/sightingdetails/' + sighting.sightingId}" th:text="${sighting.sightingId}">Sighting Id</a></td>
                             <td><a class="btn-outline-danger " href="#" th:href="${'/superdetails/' + sighting.superSighted.superId}" th:text="${sighting.superSighted.superName}">Super Name</a></td>
                             <td><a class="btn-outline-danger " href="#" th:href="${'/locdetails/' + sighting.locSighted.locId}" th:text="${sighting.locSighted.locName}">Location Name</td>
                             <td th:text="${sighting.sightingDate}" style="color: whitesmoke">Sighting Date</td>
