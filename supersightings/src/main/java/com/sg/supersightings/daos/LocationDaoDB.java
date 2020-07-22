@@ -21,14 +21,14 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class LocationDaoDB implements LocationDao {
-    
+
     @Autowired
     JdbcTemplate template;
 
     @Override
     public List<Location> getAllLocations() {
         List<Location> allLocations = template.query("select * from locations", new LocationMapper());
-        
+
         return allLocations;
     }
 
@@ -53,8 +53,10 @@ public class LocationDaoDB implements LocationDao {
 
     @Override
     public void deleteLocById(Integer id) {
+        template.update("delete from sightings where locId =?", id);
+
         template.update("delete from locations where locId=?;", id);
-        
+
         template.update("alter table locations auto_increment =?", id);
     }
 
@@ -72,9 +74,9 @@ public class LocationDaoDB implements LocationDao {
                 toEdit.getLocLongitude(),
                 toEdit.getLocId());
     }
-    
+
     private static class LocationMapper implements RowMapper<Location> {
-        
+
         public Location mapRow(ResultSet rs, int i) throws SQLException {
             Location toReturn = new Location();
             toReturn.setLocId(rs.getInt("locId"));
@@ -86,7 +88,7 @@ public class LocationDaoDB implements LocationDao {
             toReturn.setLocZip(rs.getString("locZip"));
             toReturn.setLocLatitude(rs.getBigDecimal("locLatitude"));
             toReturn.setLocLongitude(rs.getBigDecimal("locLongitude"));
-            
+
             return toReturn;
         }
     }

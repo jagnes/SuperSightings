@@ -34,62 +34,67 @@ and open the template in the editor.
         <div class="container">
             <div class="row m-2">
                 <div class="col">
-                    <a class="btn btn-outline-danger btn-block bg" style="font-size: 50px; font-weight: bold" href="/">Super Sightings</a>
+                    <a class="btn btn-outline-danger btn-block bg" style="font-size: 50px; font-weight: bold " href="/">Super Sightings</a>
                 </div>
             </div>
             <div class="row m-4 border border-dark bg">
                 <div class="col text-center m-3">
-                    <a href="/sightings" class="btn btn-outline-danger btn-lg">Sightings</a>
+                    <a href="sightings" class="btn btn-outline-danger btn-lg">Sightings</a>
                 </div>
                 <div class="col text-center m-3">
-                    <a href="/supers" class="btn btn-outline-danger btn-lg">Supers</a>
+                    <a href="supers" class="btn btn-outline-danger btn-lg">Supers</a>
                 </div>
                 <div class="col text-center m-3">
-                    <a href="/powers" class="btn btn-outline-danger btn-lg">Powers</a>
+                    <a href="powers" class="btn btn-outline-danger btn-lg">Powers</a>
                 </div>
                 <div class="col text-center m-3">
-                    <a href="/organizations" class="btn btn-outline-danger btn-lg">Organizations</a>
+                    <a href="organizations" class="btn btn-outline-danger btn-lg">Organizations</a>
                 </div>
                 <div class="col text-center m-3">
-                    <a href="/locations" class="btn btn-outline-danger btn-lg">Locations</a>
+                    <a href="locations" class="btn btn-outline-danger btn-lg">Locations</a>
                 </div>
             </div>
 
             <div class="row m-4 border border-dark bg" style="color: whitesmoke">
                 <div class="col text-center m-3">
-                    <h2>Edit Super</h2><hr/>
-                    <form action="editsuper" method="POST">
+                    <h2>Edit Sighting</h2><hr/>
+                    <form action="editsighting" method="POST">
                         <div class="form-group row">
-                            <label for="superName" class="col-3 col-form-label"><h5>
-                                    Super Name: </h5></label>
+                            <label for="superId" class="col-3 col-form-label"><h5>
+                                    Super: </h5></label>
                             <div class="col-9">
-                                <input name="superName"  th:value="${super.superName}" 
-                                       id="superNameInput" class="form-control"/>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="superDescription" class="col-3 col-form-label"><h5>
-                                    Super Description: </h5></label>
-                            <div class="col-9">
-                                <input name="superDescription"  th:value="${super.superDescription}" 
-                                       id="superDescriptionInput" class="form-control"/>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="powerId" class="col-3 col-form-label"><h5>
-                                    Power: </h5></label>
-                            <div class="col-9">
-                                <select id="powerId" name="powerId" class="form-control">
-                                    <option value="">Select a Power</option>
-                                    <option th:each="power : ${powers}" 
-                                            th:value="${power.powerId}" 
-                                            th:text="${power.powerName}"
-                                            th:selected="${power.powerId == super.powerId}"></option>
+                                <select name="superId" class="form-control">
+                                    <option value="0">Select a Super</option>
+                                    <option th:each="super : ${supers}" 
+                                            th:value="${super.superId}" 
+                                            th:text="${super.superName}"
+                                            th:selected="${super.superId == sighting.superSighted.superId}"></option>
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-danger">Edit Power</button>
-                        <input type="hidden" th:value="${superId}" name="superId"/>
+                        <div class="form-group row">
+                            <label for="locId" class="col-3 col-form-label"><h5>
+                                    Location: </h5></label>
+                            <div class="col-9">
+                                <select name="locId" class="form-control">
+                                    <option value="0">Select a Location</option>
+                                    <option th:each="location : ${locations}" 
+                                            th:value="${location.locId}" 
+                                            th:text="${location.locName}"
+                                            th:selected="${location.locId == sighting.locSighted.locId}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="sightingDate" class="col-3 col-form-label"><h5>
+                                    Sighting Date: </h5></label>
+                            <div class="col-9">
+                                <input type="date" name="sightingDate" th:value="${sighting.sightingDate}"
+                                       id="sightingDateInput" class="form-control"/>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-danger">Edit Sighting</button>
+                        <input type="hidden" th:value="${sighting.sightingId}" name="sightingId"/>
                     </form>
                 </div>
             </div>
@@ -107,3 +112,4 @@ and open the template in the editor.
         crossorigin="anonymous"></script>
     </body>
 </html>
+

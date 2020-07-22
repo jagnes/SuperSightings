@@ -32,7 +32,7 @@ and open the template in the editor.
     </head>
     <body>
         <div class="container">
-            <div class="row m-4">
+            <div class="row m-2">
                 <div class="col">
                     <a class="btn btn-outline-danger btn-block bg" style="font-size: 50px; font-weight: bold " href="/">Super Sightings</a>
                 </div>
@@ -54,98 +54,97 @@ and open the template in the editor.
                     <a href="locations" class="btn btn-outline-danger btn-lg">Locations</a>
                 </div>
             </div>
-        </div>
 
-        <div class="row m-4 border border-dark bg" style="color: whitesmoke">
-            <div class="col text-center m-3">
-                <h2>Add Organization</h2><hr/>
-                <form action="addorg" method="POST">
-                    <div class="form-group row">
-                        <label for="orgName" class="col-3 col-form-label"><h5>
-                                Organization Name: </h5></label>
-                        <div class="col-9">
-                            <input name="orgName" placeholder="Name of Organization" 
-                                   id="orgNameInput" class="form-control"/>
+            <div class="row m-4 border border-dark bg" style="color: whitesmoke">
+                <div class="col text-center m-3">
+                    <h2>Add Organization</h2><hr/>
+                    <form action="addorg" method="POST">
+                        <div class="form-group row">
+                            <label for="orgName" class="col-3 col-form-label"><h5>
+                                    Organization Name: </h5></label>
+                            <div class="col-9">
+                                <input name="orgName" placeholder="Name of Organization" 
+                                       id="orgNameInput" class="form-control"/>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="orgDescription" class="col-3 col-form-label"><h5>
-                                Organization Description: </h5></label>
-                        <div class="col-9">
-                            <input name="orgDescription" placeholder="Short description about organization"
-                                   id="orgDescriptionInput" class="form-control"/>
+                        <div class="form-group row">
+                            <label for="orgDescription" class="col-3 col-form-label"><h5>
+                                    Organization Description: </h5></label>
+                            <div class="col-9">
+                                <input name="orgDescription" placeholder="Short description about organization"
+                                       id="orgDescriptionInput" class="form-control"/>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="orgAddress" class="col-3 col-form-label"><h5>
-                                Organization Address: </h5></label>
-                        <div class="col-9">
-                            <input name="orgAddress" placeholder="123 Fake St" 
-                                   id="orgAddressInput" class="form-control"/>
+                        <div class="form-group row">
+                            <label for="orgAddress" class="col-3 col-form-label"><h5>
+                                    Organization Address: </h5></label>
+                            <div class="col-9">
+                                <input name="orgAddress" placeholder="123 Fake St" 
+                                       id="orgAddressInput" class="form-control"/>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="orgCity" class="col-3 col-form-label"><h5>
-                                Organization City: </h5></label>
-                        <div class="col-3">
-                            <input name="orgCity" placeholder="Minneapolis" 
-                                   id="orgCityInput" class="form-control"/>
+                        <div class="form-group row">
+                            <label for="orgCity" class="col-3 col-form-label"><h5>
+                                    Organization City: </h5></label>
+                            <div class="col-3">
+                                <input name="orgCity" placeholder="Minneapolis" 
+                                       id="orgCityInput" class="form-control"/>
+                            </div>
+                            <label for="orgState" class="col-3 col-form-label"><h5>
+                                    Organization State Abbreviation: </h5></label>
+                            <div class="col-3">
+                                <input name="orgState" placeholder="MN" 
+                                       id="orgStateInput" class="form-control"/>
+                            </div>
                         </div>
-                        <label for="orgState" class="col-3 col-form-label"><h5>
-                                Organization State Abbreviation: </h5></label>
-                        <div class="col-3">
-                            <input name="orgState" placeholder="MN" 
-                                   id="orgStateInput" class="form-control"/>
+                        <div class="form-group row">
+                            <label for="orgZip" class="col-3 col-form-label"><h5>
+                                    Organization Zip: </h5></label>
+                            <div class="col-3">
+                                <input name="orgZip" placeholder="12345" 
+                                       id="orgZipInput" class="form-control"/>
+                            </div>
+                            <label for="phone" class="col-3 col-form-label"><h5>
+                                    Organization Phone: </h5></label>
+                            <div class="col-3">
+                                <input name="phone" placeholder="000-000-0000" 
+                                       id="phoneInput" class="form-control"/>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="orgZip" class="col-3 col-form-label"><h5>
-                                Organization Zip: </h5></label>
-                        <div class="col-3">
-                            <input name="orgZip" placeholder="12345" 
-                                   id="orgZipInput" class="form-control"/>
+                        <div class="row m-4 border border-dark bg">
+                            <div class="col text-center m-3">
+                                <h2 style="color: whitesmoke">Select Supers</h2>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr style="color: whitesmoke">
+                                            <th>Select supers to add</th>
+                                            <th>Super Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="super : ${supers}">
+                                            <td><input type="checkbox" name="checkedSupers" th:value="${super.superId}"></input></td>
+                                            <td th:text="${super.superName}">Super Name</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                        <label for="phone" class="col-3 col-form-label"><h5>
-                                Organization Phone: </h5></label>
-                        <div class="col-3">
-                            <input name="phone" placeholder="000-000-0000" 
-                                   id="phoneInput" class="form-control"/>
-                        </div>
-                    </div>
-                    <div class="row m-4 border border-dark bg">
-                        <div class="col text-center m-3">
-                            <h2 style="color: whitesmoke">Select Supers</h2>
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr style="color: whitesmoke">
-                                        <th>Select supers to add</th>
-                                        <th>Super Name</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr th:each="super : ${supers}">
-                                        <td><input type="checkbox" name="checkedSupers" th:value="${super.superId}"></input></td>
-                                        <td th:text="${super.superName}">Super Name</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-danger">Add Organization</button>
-                </form>
+                        <button type="submit" class="btn btn-danger">Add Organization</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
-    crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" 
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" 
-    crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
-            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" 
-    crossorigin="anonymous"></script>
-</body>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" 
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" 
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" 
+        crossorigin="anonymous"></script>
+    </body>
 </html>

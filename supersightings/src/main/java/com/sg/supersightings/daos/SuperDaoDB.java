@@ -36,7 +36,7 @@ public class SuperDaoDB implements SuperDao {
     @Override
     public Super getSuperById(Integer id) {
         Super toGet = template.queryForObject(("select * from supers where superId =?"), new SuperMapper(), id);
-    
+
         return toGet;
     }
 
@@ -46,17 +46,18 @@ public class SuperDaoDB implements SuperDao {
                 toAdd.getSuperName(), toAdd.getSuperDescription(), toAdd.getPowerId());
         int id = template.queryForObject("select last_insert_id()", Integer.class);
         toAdd.setSuperId(id);
-        
+
 //        template.update("insert into organizations_supers (orgId, superId) values (?, ?);",
 //                org.getOrgId(), id);
-        
         return toAdd;
     }
 
     @Override
     public void deleteSuperById(Integer id) {
+        template.update("delete from organizations_supers where superId =?", id);
+        template.update("delete from sightings where superId =?", id);
         template.update("delete from supers where superId =?", id);
-        
+
         template.update("alter table supers auto_increment =?", id);
     }
 
@@ -70,10 +71,15 @@ public class SuperDaoDB implements SuperDao {
     }
 
     @Override
-    public Organization getOrgBySuper(Integer id) {
-        return template.queryForObject("select o.orgId, o.orgName from organizations o"
+    public List<Organization> getOrgsBySuper(Integer id) {
+        return template.query("select o.orgId, o.orgName from organizations o"
                 + " inner join organizations_supers os on o.orgId = os.orgId"
                 + " inner join supers s on s.superId = os.superId where s.superId =?;", new OrganizationMapper(), id);
+    }
+
+    @Override
+    public List<Super> getSupersByPower(Integer id) {
+        return template.query("select * from supers where powerId=?", new SuperMapper(), id);
     }
 
     public class SuperMapper implements RowMapper<Super> {
@@ -89,7 +95,7 @@ public class SuperDaoDB implements SuperDao {
             return toReturn;
         }
     }
-    
+
     private static class OrganizationMapper implements RowMapper<Organization> {
 
         @Override

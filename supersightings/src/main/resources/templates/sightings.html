@@ -18,7 +18,7 @@ and open the template in the editor.
                 margin: 0;
             }
             body {
-                background: url("https://i.imgur.com/zjvxTZ1.png"); 
+                background: url("https://i.imgur.com/oFgzBwG.png"); 
                 background-size: cover;
                 height: 100%;
             }
@@ -41,7 +41,7 @@ and open the template in the editor.
     </head>
     <body>
         <div class="container">
-            <div class="row m-4">
+            <div class="row m-2">
                 <div class="col">
                     <a class="btn btn-outline-danger btn-block bg" style="font-size: 50px; font-weight: bold" href="/">Super Sightings</a>
                 </div>
@@ -63,34 +63,34 @@ and open the template in the editor.
                     <a href="/locations" class="btn btn-outline-danger btn-lg">Locations</a>
                 </div>
             </div>
-        </div>
 
-        <div class="row m-4 border border-dark bg">
-            <div class="col text-center m-3">
-                <h2 style="color: whitesmoke">Sightings</h2>
-                <a class="btn btn-outline-danger btn-block m-3" href="/addsighting">Add Sighting</a>
-                <table class="table">
-                    <thead>
-                        <tr style="color: whitesmoke">
-                            <th>ID</th>
-                            <th>Super Name</th>
-                            <th>Location Name</th>
-                            <th>Sighting Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="sighting : ${allSightings}" style="color: whitesmoke">
-                            <td><a class="btn-outline-danger " href="#" th:href="${'/sightingdetails/' + sighting.sightingId}" th:text="${sighting.sightingId}">Sighting Id</a></td>
-                            <td><a class="btn-outline-danger " href="#" th:href="${'/superdetails/' + sighting.superSighted.superId}" th:text="${sighting.superSighted.superName}">Super Name</a></td>
-                            <td><a class="btn-outline-danger " href="#" th:href="${'/locdetails/' + sighting.locSighted.locId}" th:text="${sighting.locSighted.locName}">Location Name</td>
-                            <td th:text="${sighting.sightingDate}" style="color: whitesmoke">Sighting Date</td>
-                        </tr>
-                    </tbody>
-                </table>
+
+            <div class="row m-4 border border-dark bg">
+                <div class="col text-center m-3">
+                    <h2 style="color: whitesmoke">Sightings</h2>
+                    <a class="btn btn-outline-danger btn-block m-3" href="/addsighting">Add Sighting</a>
+                    <table class="table">
+                        <thead>
+                            <tr style="color: whitesmoke">
+                                <th>ID</th>
+                                <th>Super Name</th>
+                                <th>Location Name</th>
+                                <th>Sighting Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="sighting : ${allSightings}" style="color: whitesmoke">
+                                <td><a class="btn-outline-danger " href="#" th:href="${'/sightingdetails/' + sighting.sightingId}" th:text="${sighting.sightingId}">Sighting Id</a></td>
+                                <td><a class="btn-outline-danger " href="#" th:href="${'/superdetails/' + sighting.superSighted.superId}" th:text="${sighting.superSighted.superName}">Super Name</a></td>
+                                <td><a class="btn-outline-danger " href="#" th:href="${'/locdetails/' + sighting.locSighted.locId}" th:text="${sighting.locSighted.locName}">Location Name</td>
+                                <td th:text="${sighting.sightingDate}" style="color: whitesmoke">Sighting Date</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 

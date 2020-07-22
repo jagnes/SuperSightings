@@ -7,6 +7,7 @@ package com.sg.supersightings.dtos;
 
 import java.util.Date;
 import java.util.Objects;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -17,6 +18,8 @@ public class Sighting {
     private int sightingId;
     private Super superSighted;
     private Location locSighted;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date sightingDate;
 
     /**

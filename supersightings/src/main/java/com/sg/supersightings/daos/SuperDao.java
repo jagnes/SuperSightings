@@ -23,8 +23,9 @@ public interface SuperDao {
 
     List<Super> getAllSupers();
 
-    Organization getOrgBySuper(Integer id);
+    List<Organization> getOrgsBySuper(Integer id);
 
     Super getSuperById(Integer id);
     
+    List<Super> getSupersByPower(Integer id);
 }

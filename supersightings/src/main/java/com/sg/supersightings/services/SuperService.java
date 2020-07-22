@@ -97,8 +97,8 @@ public class SuperService {
         oDao.deleteOrgById(id);
     }
 
-    public Organization getOrgbySuper(Integer id) {
-        return sDao.getOrgBySuper(id);
+    public List<Organization> getOrgsbySuper(Integer id) {
+        return sDao.getOrgsBySuper(id);
     }
 
     public void addOrganization(Organization toAdd) {
@@ -147,5 +147,13 @@ public class SuperService {
 
     public void editSighting(Sighting toEdit) {
         siDao.editSighting(toEdit);
+    }
+    
+    public List<Super> getSupersByPower(Integer id) {
+        return sDao.getSupersByPower(id);
+    }
+    
+    public List<Sighting> getSightingsByLocation(Integer id) {
+        return siDao.getSightingsByLocation(id);
     }
 }

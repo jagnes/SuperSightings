@@ -58,12 +58,17 @@ public class SightingDaoDB implements SightingDao {
 
     @Override
     public void editSighting(Sighting toEdit) {
-        template.update("update sightings set superId=?, locId=?, sightingDate=?,"
-                + " where orgId=?",
+        template.update("update sightings set superId=?, locId=?, sightingDate=?"
+                + " where sightingId=?",
                 toEdit.getSuperSighted().getSuperId(),
                 toEdit.getLocSighted().getLocId(),
                 toEdit.getSightingDate(),
                 toEdit.getSightingId());
+    }
+    
+    @Override
+    public List<Sighting> getSightingsByLocation(Integer id) {
+        return template.query("select * from sightings where locId=?", new SightingMapper(), id);
     }
 
     private class SightingMapper implements RowMapper<Sighting> {

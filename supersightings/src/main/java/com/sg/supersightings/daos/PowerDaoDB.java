@@ -6,6 +6,7 @@
 package com.sg.supersightings.daos;
 
 import com.sg.supersightings.dtos.Power;
+import com.sg.supersightings.dtos.Super;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -24,6 +25,9 @@ public class PowerDaoDB implements PowerDao {
     @Autowired
     JdbcTemplate template;
 
+    @Autowired
+    SuperDaoDB sDao;
+    
     @Override
     public List<Power> getAllPowers() {
         List<Power> allPowers = template.query("select * from powers", new PowerMapper());
@@ -50,8 +54,11 @@ public class PowerDaoDB implements PowerDao {
     
     @Override
     public void deletePowerById(Integer id) {
+        List<Super> supers = sDao.getSupersByPower(id);
+        for (Super s : supers) {
+            sDao.deleteSuperById(s.getSuperId());
+        }
         template.update("delete from powers where powerId =?", id);
-        
         template.update("alter table powers auto_increment =?", id);
     }
 

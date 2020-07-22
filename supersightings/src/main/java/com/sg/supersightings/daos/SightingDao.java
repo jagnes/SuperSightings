@@ -24,4 +24,5 @@ public interface SightingDao {
 
     Sighting getSightingById(Integer id);
     
+    List<Sighting> getSightingsByLocation(Integer id);
 }

@@ -79,7 +79,11 @@ public class OrganizationController {
     public String displayEditOrg(HttpServletRequest request, Model pageModel) {
         Integer id = Integer.parseInt(request.getParameter("id"));
         Organization org = service.getOrgById(id);
+        org.setSupers(service.getSupersByOrg(id));
         pageModel.addAttribute("org", org);
+        
+        List<Super> checkedSupers = org.getSupers();
+        pageModel.addAttribute("checkedSupers", checkedSupers);
         
         List<Super> allSupers = service.getAllSupers();
         pageModel.addAttribute("supers", allSupers);

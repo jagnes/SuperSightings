@@ -40,7 +40,7 @@ and open the template in the editor.
     </head>
     <body>
         <div class="container">
-            <div class="row m-4">
+            <div class="row m-2">
                 <div class="col">
                     <a class="btn btn-outline-danger btn-block bg" style="font-size: 50px; font-weight: bold" href="/">Super Sightings</a>
                 </div>
@@ -61,6 +61,44 @@ and open the template in the editor.
                 <div class="col text-center m-3">
                     <a href="locations" class="btn btn-outline-danger btn-lg">Locations</a>
                 </div>
+            </div>
+            <div class="row m-4 border border-dark bg">
+                <div class="col text-center m-3" style="color: whitesmoke">
+                    <h3>Welcome to Super Sightings</h3>
+                    <p>
+                        With the rising popularity of superhero movies, there has been a 
+                        heightened awareness of superheroes in our midst. The frequency of 
+                        superhero (and supervillain) sightings is increasing at an alarming 
+                        rate. Given this development, the Hero Education and Relationship 
+                        Organization (HERO) has created this superhero sighting web application.
+                        This application allows you to add supers, their powers, and organizations
+                        that they belong to as well as superhero and supervillain sightings and
+                        sighting locations.
+                    </p>
+                </div>
+            </div>
+            <div class="row m-4 border border-dark bg">
+                <div class="col text-center m-3" style="color: whitesmoke">
+                    <h2 style="color: whitesmoke">Last 10 Sightings</h2>
+                    <table class="table">
+                        <thead>
+                            <tr style="color: whitesmoke">
+                                <th>Sighting ID</th>
+                                <th>Super Name</th>
+                                <th>Location Name</th>
+                                <th>Sighting Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="sighting : ${sightings}" style="color: whitesmoke">
+                                <td><a class="btn-outline-danger " href="#" th:href="${'/sightingdetails/' + sighting.sightingId}" th:text="${sighting.sightingId}">Sighting Id</a></td>
+                                <td><a class="btn-outline-danger " href="#" th:href="${'/superdetails/' + sighting.superSighted.superId}" th:text="${sighting.superSighted.superName}">Super Name</a></td>
+                                <td><a class="btn-outline-danger " href="#" th:href="${'/locdetails/' + sighting.locSighted.locId}" th:text="${sighting.locSighted.locName}">Location Name</td>
+                                <td th:text="${sighting.sightingDate}" style="color: whitesmoke">Sighting Date</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> 
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 

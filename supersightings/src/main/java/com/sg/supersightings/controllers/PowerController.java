@@ -37,7 +37,7 @@ public class PowerController {
         Power toGet = service.getPowerById(id);
         pageModel.addAttribute("power", toGet);
         pageModel.addAttribute("powerId", toGet.getPowerId());
-        
+        pageModel.addAttribute("supers", service.getSupersByPower(id));
         return "powerdetails";
     }
     

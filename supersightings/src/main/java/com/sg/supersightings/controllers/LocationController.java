@@ -6,7 +6,9 @@
 package com.sg.supersightings.controllers;
 
 import com.sg.supersightings.dtos.Location;
+import com.sg.supersightings.dtos.Sighting;
 import com.sg.supersightings.services.SuperService;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,7 +38,11 @@ public class LocationController {
     public String displayLocationDetails(@PathVariable Integer id, Model pageModel) {
         Location loc = service.getLocById(id);
         pageModel.addAttribute("loc", loc);
-        
+        List<Sighting> sightings = service.getSightingsByLocation(id);
+        pageModel.addAttribute("sightings", sightings);
+        for (Sighting s : sightings) {
+            s.setSuperSighted(service.getSuperById(s.getSuperSighted().getSuperId()));
+        }
         return "locdetails";
     }
     
