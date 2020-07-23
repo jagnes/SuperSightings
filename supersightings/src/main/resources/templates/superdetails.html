@@ -113,6 +113,27 @@ and open the template in the editor.
                             </table>
                         </div>
                     </div>
+                    <div class="row m-4 border border-dark">
+                        <div class="col text-center m-3">
+                            <h4  th:text="${super.superName}+' sightings'">Sightings</h4>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Sighting ID</th>
+                                        <th>Location Name</th>
+                                        <th>Sighting Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="s : ${sightings}">
+                                        <td><a class="btn-outline-danger " href="#" th:href="${'/sightingdetails/' + s.sightingId}" th:text="${s.sightingId}">Sighting ID</a></td>
+                                        <td><a class="btn-outline-danger " href="#" th:href="${'/locdetails/' + s.locSighted.locId}" th:text="${s.locSighted.locName}">Location Name</a></td>
+                                        <td th:text="${s.sightingDate}">Sighting Date</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
 

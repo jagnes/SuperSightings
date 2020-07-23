@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Repository;
  * @author jweez
  */
 @Repository
+@Profile( {"database", "dao-test"} )
 public class SightingDaoDB implements SightingDao {
 
     @Autowired
@@ -45,7 +47,6 @@ public class SightingDaoDB implements SightingDao {
     @Override
     public void deleteSightingById(Integer id) {
         template.update("delete from sightings where sightingId =?", id);
-        template.update("alter table sightings auto_increment =?", id);
     }
 
     @Override
@@ -69,6 +70,11 @@ public class SightingDaoDB implements SightingDao {
     @Override
     public List<Sighting> getSightingsByLocation(Integer id) {
         return template.query("select * from sightings where locId=?", new SightingMapper(), id);
+    }
+    
+    @Override
+    public List<Sighting> getSightingsBySuper(Integer id) {
+        return template.query("select * from sightings where superId=?", new SightingMapper(), id);
     }
 
     private class SightingMapper implements RowMapper<Sighting> {

@@ -7,6 +7,7 @@ package com.sg.supersightings.controllers;
 
 import com.sg.supersightings.dtos.Organization;
 import com.sg.supersightings.dtos.Power;
+import com.sg.supersightings.dtos.Sighting;
 import com.sg.supersightings.dtos.Super;
 import com.sg.supersightings.services.SuperService;
 import java.util.List;
@@ -40,10 +41,15 @@ public class SuperController {
         Super toGet = service.getSuperById(id);
         Power toAdd = service.getPowerById(toGet.getPowerId());
         List<Organization> orgs = service.getOrgsbySuper(id);
+        List<Sighting> sightings = service.getSightingsBySuper(id);
         pageModel.addAttribute("power", toAdd);
         pageModel.addAttribute("superId", id);
         pageModel.addAttribute("super", toGet);
         pageModel.addAttribute("orgs", orgs);
+        pageModel.addAttribute("sightings", sightings);
+        for (Sighting s : sightings) {
+            s.setLocSighted(service.getLocById(s.getLocSighted().getLocId()));
+        }
 
         return "superdetails";
     }

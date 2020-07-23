@@ -1,8 +1,8 @@
-drop database if exists supersightingsdb;
+drop database if exists supersightingsdbTest;
 
-create database supersightingsdb;
+create database supersightingsdbTest;
 
-use supersightingsdb;
+use supersightingsdbTest;
 
 create table powers (
 	powerId int primary key auto_increment,

@@ -6,18 +6,44 @@
 package com.sg.supersightings.dtos;
 
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  *
  * @author jweez
  */
+@Entity
 public class Super {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int superId;
+    
+    @NotBlank(message = "Super Name cannot be blank.")
+    @Size(max=30)
     private String superName;
+    
+    @Size(max=300)
     private String superDescription;
+    
     private int powerId;
 
+    public Super(int superId, String superName, String superDescription, int powerId) {
+        this.superId = superId;
+        this.superName = superName;
+        this.superDescription = superDescription;
+        this.powerId = powerId;
+    }
+    
+    public Super() {
+        
+    }
+    
     /**
      * @return the superId
      */

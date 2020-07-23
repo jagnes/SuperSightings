@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Repository;
  * @author jweez
  */
 @Repository
+@Profile( {"database", "dao-test"} )
 public class OrganizationDaoDB implements OrganizationDao {
 
     @Autowired
@@ -50,7 +52,6 @@ public class OrganizationDaoDB implements OrganizationDao {
     public void deleteOrgById(Integer id) {
         template.update("delete from organizations_supers where orgId =?", id);
         template.update("delete from organizations where orgId =?", id);
-        template.update("alter table organizations auto_increment =?", id);
     }
 
     @Override
@@ -96,16 +97,6 @@ public class OrganizationDaoDB implements OrganizationDao {
         
         insertSupersInOrg(toEdit);
     }
-
-//    private void updateSupersInOrg(Organization toEdit) {
-//        
-//        
-//        final String UPDATE_SUPERS = "update organizations_supers set orgId=?, superId=? where orgId=?;";
-//        for (Super s : toEdit.getSupers()) {
-//            template.update(UPDATE_SUPERS,
-//                    toEdit.getOrgId(), s.getSuperId(), toEdit.getOrgId());
-//        }
-//    }
 
     private static class OrganizationMapper implements RowMapper<Organization> {
 

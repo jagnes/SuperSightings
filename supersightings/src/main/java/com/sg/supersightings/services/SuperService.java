@@ -156,4 +156,8 @@ public class SuperService {
     public List<Sighting> getSightingsByLocation(Integer id) {
         return siDao.getSightingsByLocation(id);
     }
+    
+    public List<Sighting> getSightingsBySuper(Integer id) {
+        return siDao.getSightingsBySuper(id);
+    }
 }

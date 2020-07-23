@@ -7,21 +7,46 @@ package com.sg.supersightings.dtos;
 
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.PastOrPresent;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
  * @author jweez
  */
+@Entity
 public class Sighting {
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int sightingId;
+    
+    @ManyToOne
     private Super superSighted;
+    
+    @ManyToOne
     private Location locSighted;
     
+    @PastOrPresent
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date sightingDate;
 
+    public Sighting(int sightingId, Super superSighted, Location locSighted, Date sightingDate) {
+        this.sightingId = sightingId;
+        this.superSighted = superSighted;
+        this.locSighted = locSighted;
+        this.sightingDate = sightingDate;
+    }
+    
+    public Sighting() {
+        
+    }
+    
     /**
      * @return the sightingId
      */

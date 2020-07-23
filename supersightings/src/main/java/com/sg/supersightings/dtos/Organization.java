@@ -7,21 +7,60 @@ package com.sg.supersightings.dtos;
 
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  *
  * @author jweez
  */
+@Entity
 public class Organization {
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orgId;
+    
+    @NotBlank
+    @Size(max=30)
     private String orgName;
+    
+    @Size(max=100)
     private String orgDescription;
+    
+    @NotBlank
+    @Size(max=50)
     private String orgAddress;
+    
+    @NotBlank
+    @Size(max=50)
     private String orgCity;
+    
+    @NotBlank
+    @Size(min=2, max=2)
     private String orgState;
+    
+    @NotBlank
+    @Size(min=5, max=5)
     private String orgZip;
+    
+    @NotBlank
+    @Size(min=12, max=12)
     private String phone;
+    
+    @ManyToMany
+    @JoinTable(name = "organizations_supers",
+            joinColumns = {
+                @JoinColumn(name = "orgId")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "superId")})
     private List<Super> supers;
 
     /**

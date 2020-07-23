@@ -6,17 +6,41 @@
 package com.sg.supersightings.dtos;
 
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  *
  * @author jweez
  */
+@Entity
 public class Power {
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int powerId;
+    
+    @NotBlank
+    @Size(max=20)
     private String powerName;
+    
+    @Size(max=300)
     private String powerDescription;
 
+    public Power(int powerId, String powerName, String powerDescription) {
+        this.powerId = powerId;
+        this.powerName = powerName;
+        this.powerDescription = powerDescription;
+    }
+    
+    public Power() {
+        
+    }
+    
     /**
      * @return the powerId
      */

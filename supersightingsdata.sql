@@ -76,10 +76,9 @@ insert into sightings (superId, locId, sightingDate) values
     (7, 1, '2020-06-20'),
     (4, 2, '2020-06-25'),
     (5, 2, '2020-06-25'),
-    (1, 3, '2020-07-04');
-    
-select * from locations;
-select * from sightings;
-select * from organizations;
-select *
-from organizations_supers;
+    (1, 3, '2020-07-04'),
+    (2, 2, '2020-07-10'),
+    (10, 1, '2020-07-10'),
+    (12, 3, '2020-07-15'),
+    (6, 3, '2020-07-15'),
+    (3, 3, '2020-07-20');
