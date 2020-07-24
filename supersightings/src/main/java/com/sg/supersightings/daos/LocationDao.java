@@ -7,11 +7,13 @@ package com.sg.supersightings.daos;
 
 import com.sg.supersightings.dtos.Location;
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author jweez
  */
+@Repository
 public interface LocationDao {
 
     void addLocation(Location toAdd);

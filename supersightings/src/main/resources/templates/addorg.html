@@ -59,6 +59,10 @@ and open the template in the editor.
                 <div class="col text-center m-3">
                     <h2>Add Organization</h2><hr/>
                     <form action="addorg" method="POST">
+                        <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
+                            <p class="alert alert-danger" th:each="error : ${errors}" 
+                               th:text="${error.message}">Error message</p>
+                        </div>
                         <div class="form-group row">
                             <label for="orgName" class="col-3 col-form-label"><h5>
                                     Organization Name: </h5></label>

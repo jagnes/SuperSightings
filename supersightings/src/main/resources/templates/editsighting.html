@@ -64,12 +64,15 @@ and open the template in the editor.
                                     Super: </h5></label>
                             <div class="col-9">
                                 <select name="superId" class="form-control">
-                                    <option value="0">Select a Super</option>
                                     <option th:each="super : ${supers}" 
                                             th:value="${super.superId}" 
                                             th:text="${super.superName}"
                                             th:selected="${super.superId == sighting.superSighted.superId}"></option>
                                 </select>
+                                <div th:if="${#fields.hasErrors('sighting.superSighted')}">
+                                    <p th:each="error : ${#fields.errors('sighting.superSighted')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad super </p>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -77,12 +80,15 @@ and open the template in the editor.
                                     Location: </h5></label>
                             <div class="col-9">
                                 <select name="locId" class="form-control">
-                                    <option value="0">Select a Location</option>
                                     <option th:each="location : ${locations}" 
                                             th:value="${location.locId}" 
                                             th:text="${location.locName}"
                                             th:selected="${location.locId == sighting.locSighted.locId}"></option>
                                 </select>
+                                <div th:if="${#fields.hasErrors('sighting.locSighted')}">
+                                    <p th:each="error : ${#fields.errors('sighting.locSighted')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad location </p>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -91,6 +97,10 @@ and open the template in the editor.
                             <div class="col-9">
                                 <input type="date" name="sightingDate" th:value="${sighting.sightingDate}"
                                        id="sightingDateInput" class="form-control"/>
+                                <div th:if="${#fields.hasErrors('sighting.sightingDate')}">
+                                    <p th:each="error : ${#fields.errors('sighting.sightingDate')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad Date </p>
+                                </div>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-danger">Edit Sighting</button>

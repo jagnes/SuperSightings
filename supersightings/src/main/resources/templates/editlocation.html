@@ -63,62 +63,94 @@ and open the template in the editor.
                             <label for="locName" class="col-3 col-form-label"><h5>
                                     Location Name: </h5></label>
                             <div class="col-9">
-                                <input name="locName" th:value="${loc.locName}"
+                                <input name="locName" th:value="${location.locName}"
                                        id="locNameInput" class="form-control"/>
+                                <div th:if="${#fields.hasErrors('location.locName')}">
+                                    <p th:each="error : ${#fields.errors('location.locName')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad Name </p>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="locDescription" class="col-3 col-form-label"><h5>
                                     Location Description: </h5></label>
                             <div class="col-9">
-                                <input name="locDescription" th:value="${loc.locDescription}"
+                                <input name="locDescription" th:value="${location.locDescription}"
                                        id="locDescriptionInput" class="form-control"/>
+                                <div th:if="${#fields.hasErrors('location.locDescription')}">
+                                    <p th:each="error : ${#fields.errors('location.locDescription')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad Description </p>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="locAddress" class="col-3 col-form-label"><h5>
                                     Location Address: </h5></label>
                             <div class="col-3">
-                                <input name="locAddress" th:value="${loc.locAddress}" 
+                                <input name="locAddress" th:value="${location.locAddress}" 
                                        id="locAddressInput" class="form-control"/>
+                                <div th:if="${#fields.hasErrors('location.locAddress')}">
+                                    <p th:each="error : ${#fields.errors('location.locAddress')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad Address </p>
+                                </div>
                             </div>
                             <label for="locCity" class="col-3 col-form-label"><h5>
                                     Location City: </h5></label>
                             <div class="col-3">
-                                <input name="locCity" th:value="${loc.locCity}" 
+                                <input name="locCity" th:value="${location.locCity}" 
                                        id="locCityInput" class="form-control"/>
+                                <div th:if="${#fields.hasErrors('location.locCity')}">
+                                    <p th:each="error : ${#fields.errors('location.locCity')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad City </p>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="locState" class="col-3 col-form-label"><h5>
                                     Location State Abbreviation: </h5></label>
                             <div class="col-3">
-                                <input name="locState" th:value="${loc.locState}"
+                                <input name="locState" th:value="${location.locState}"
                                        id="locStateInput" class="form-control"/>
+                                <div th:if="${#fields.hasErrors('location.locState')}">
+                                    <p th:each="error : ${#fields.errors('location.locState')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad State </p>
+                                </div>
                             </div>
                             <label for="locZip" class="col-3 col-form-label"><h5>
                                     Location Zip: </h5></label>
                             <div class="col-3">
-                                <input name="locZip" th:value="${loc.locZip}"
+                                <input name="locZip" th:value="${location.locZip}"
                                        id="locZipInput" class="form-control"/>
+                                <div th:if="${#fields.hasErrors('location.locZip')}">
+                                    <p th:each="error : ${#fields.errors('location.locZip')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad Zip </p>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="locLatitude" class="col-3 col-form-label"><h5>
                                     Location Latitude: </h5></label>
                             <div class="col-3">
-                                <input name="locLatitude" th:value="${loc.locLatitude}" 
+                                <input name="locLatitude" th:value="${location.locLatitude}" 
                                        id="locLatInput" class="form-control"/>
+                                <div th:if="${#fields.hasErrors('location.locLatitude')}">
+                                    <p th:each="error : ${#fields.errors('location.locLatitude')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad Latitude </p>
+                                </div>
                             </div>
                             <label for="locLongitude" class="col-3 col-form-label"><h5>
                                     Location Longitude </h5></label>
                             <div class="col-3">
-                                <input name="locLongitude" th:value="${loc.locLongitude}" 
+                                <input name="locLongitude" th:value="${location.locLongitude}" 
                                        id="locLongInput" class="form-control"/>
+                                <div th:if="${#fields.hasErrors('location.locLongitude')}">
+                                    <p th:each="error : ${#fields.errors('location.locLongitude')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad Longitude </p>
+                                </div>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-danger">Edit Location</button>
-                        <input type="hidden" th:value="${loc.locId}" name="locId"/>
+                        <input type="hidden" th:value="${location.locId}" name="locId"/>
                     </form>
                 </div>
             </div>

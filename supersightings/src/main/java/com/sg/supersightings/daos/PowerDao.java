@@ -7,11 +7,13 @@ package com.sg.supersightings.daos;
 
 import com.sg.supersightings.dtos.Power;
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author jweez
  */
+@Repository
 public interface PowerDao {
 
     Power addPower(Power toAdd);

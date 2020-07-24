@@ -65,6 +65,10 @@ and open the template in the editor.
                             <div class="col-9">
                                 <input name="superName"  th:value="${super.superName}" 
                                        id="superNameInput" class="form-control"/>
+                                <div th:if="${#fields.hasErrors('super.superName')}">
+                                    <p th:each="error : ${#fields.errors('super.superName')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad super name </p>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -73,6 +77,10 @@ and open the template in the editor.
                             <div class="col-9">
                                 <input name="superDescription"  th:value="${super.superDescription}" 
                                        id="superDescriptionInput" class="form-control"/>
+                                <div th:if="${#fields.hasErrors('super.superDescription')}">
+                                    <p th:each="error : ${#fields.errors('super.superDescription')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad super description </p>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -80,16 +88,19 @@ and open the template in the editor.
                                     Power: </h5></label>
                             <div class="col-9">
                                 <select id="powerId" name="powerId" class="form-control">
-                                    <option value="">Select a Power</option>
                                     <option th:each="power : ${powers}" 
                                             th:value="${power.powerId}" 
                                             th:text="${power.powerName}"
                                             th:selected="${power.powerId == super.powerId}"></option>
                                 </select>
+                                <div th:if="${#fields.hasErrors('super.powerId')}">
+                                    <p th:each="error : ${#fields.errors('super.powerId')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad power </p>
+                                </div>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-danger">Edit Super</button>
-                        <input type="hidden" th:value="${superId}" name="superId"/>
+                        <input type="hidden" th:value="${super.superId}" name="superId"/>
                     </form>
                 </div>
             </div>

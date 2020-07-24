@@ -63,59 +63,87 @@ and open the template in the editor.
                             <label for="orgName" class="col-3 col-form-label"><h5>
                                     Organization Name: </h5></label>
                             <div class="col-9">
-                                <input name="orgName" th:value="${org.orgName}"
+                                <input name="orgName" th:value="${organization.orgName}"
                                        id="orgNameInput" class="form-control"
                                        placeholder="Name of Organization"/>
+                                <div th:if="${#fields.hasErrors('organization.orgName')}">
+                                    <p th:each="error : ${#fields.errors('organization.orgName')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad Name </p>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="orgDescription" class="col-3 col-form-label"><h5>
                                     Organization Description: </h5></label>
                             <div class="col-9">
-                                <input name="orgDescription" th:value="${org.orgDescription}" 
+                                <input name="orgDescription" th:value="${organization.orgDescription}" 
                                        id="orgDescriptionInput" class="form-control"
                                        placeholder="Short description about organization"/>
+                                <div th:if="${#fields.hasErrors('organization.orgDescription')}">
+                                    <p th:each="error : ${#fields.errors('organization.orgDescription')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad description </p>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="orgAddress" class="col-3 col-form-label"><h5>
                                     Organization Address: </h5></label>
                             <div class="col-9">
-                                <input name="orgAddress" th:value="${org.orgAddress}" 
+                                <input name="orgAddress" th:value="${organization.orgAddress}" 
                                        id="orgAddressInput" class="form-control" 
                                        placeholder="123 Fake St"/>
+                                <div th:if="${#fields.hasErrors('organization.orgAddress')}">
+                                    <p th:each="error : ${#fields.errors('organization.orgAddress')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad Address </p>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="orgCity" class="col-3 col-form-label"><h5>
                                     Organization City: </h5></label>
                             <div class="col-3">
-                                <input name="orgCity" th:value="${org.orgCity}" 
+                                <input name="orgCity" th:value="${organization.orgCity}" 
                                        id="orgCityInput" class="form-control" 
                                        placeholder="Minneapolis"/>
+                                <div th:if="${#fields.hasErrors('organization.orgCity')}">
+                                    <p th:each="error : ${#fields.errors('organization.orgCity')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad City </p>
+                                </div>
                             </div>
                             <label for="orgState" class="col-3 col-form-label"><h5>
                                     Organization State: </h5></label>
                             <div class="col-3">
-                                <input name="orgState" th:value="${org.orgState}" 
+                                <input name="orgState" th:value="${organization.orgState}" 
                                        id="orgStateInput" class="form-control"
                                        placeholder="MN"/>
+                                <div th:if="${#fields.hasErrors('organization.orgState')}">
+                                    <p th:each="error : ${#fields.errors('organization.orgState')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad State </p>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="orgZip" class="col-3 col-form-label"><h5>
                                     Organization Zip: </h5></label>
                             <div class="col-3">
-                                <input name="orgZip" th:value="${org.orgZip}" 
+                                <input name="orgZip" th:value="${organization.orgZip}" 
                                        id="orgZipInput" class="form-control"
                                        placeholder="12345"/>
+                                <div th:if="${#fields.hasErrors('organization.orgZip')}">
+                                    <p th:each="error : ${#fields.errors('organization.orgZip')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad Zip </p>
+                                </div>
                             </div>
                             <label for="phone" class="col-3 col-form-label"><h5>
                                     Organization Phone: </h5></label>
                             <div class="col-3">
-                                <input name="phone" th:value="${org.phone}" 
+                                <input name="phone" th:value="${organization.phone}" 
                                        id="phoneInput" class="form-control"
-                                       placeholder="000-000-0000"/>
+                                       placeholder="XXX-XXX-XXXX"/>
+                                <div th:if="${#fields.hasErrors('organization.phone')}">
+                                    <p th:each="error : ${#fields.errors('organization.phone')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad phone </p>
+                                </div>
                             </div>
                         </div>
                         <div class="row m-4 border border-dark bg">
@@ -130,9 +158,8 @@ and open the template in the editor.
                                     </thead>
                                     <tbody>
                                         <tr th:each="super : ${supers}">
-                                            <!--                                        fix this-->
                                             <td><input type="checkbox" name="checkedSupers" 
-                                                       th:checked="${org.supers.contains(super)}" 
+                                                       th:checked="${organization.supers.contains(super)}" 
                                                        th:value="${super.superId}"></input></td>
                                             <td th:text="${super.superName}">Super Name</td>
                                         </tr>
@@ -141,7 +168,7 @@ and open the template in the editor.
                             </div>
                         </div>
                         <button type="submit" class="btn btn-danger">Edit Organization</button>
-                        <input type="hidden" th:value="${org.orgId}" name="orgId"/>
+                        <input type="hidden" th:value="${organization.orgId}" name="orgId"/>
                     </form>
                 </div>
             </div>

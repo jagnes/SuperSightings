@@ -6,29 +6,23 @@
 package com.sg.supersightings.dtos;
 
 import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
+
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
  * @author jweez
  */
-@Entity
 public class Power {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int powerId;
     
-    @NotBlank
-    @Size(max=20)
+    @NotBlank(message = "Power Name cannot be blank")
+    @Size(max=20, message = "Power Name must be less than 20 characters")
     private String powerName;
     
-    @Size(max=300)
+    @Size(max=300, message = "Power Description must be less than 300 characters")
     private String powerDescription;
 
     public Power(int powerId, String powerName, String powerDescription) {

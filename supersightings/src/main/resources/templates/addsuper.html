@@ -59,6 +59,10 @@ and open the template in the editor.
                 <div class="col text-center m-3">
                     <h2>Add Super</h2><hr/>
                     <form action="addsuper" method="POST">
+                        <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
+                            <p class="alert alert-danger" th:each="error : ${errors}" 
+                               th:text="${error.message}">Error message</p>
+                        </div>
                         <div class="form-group row">
                             <label for="superName" class="col-3 col-form-label"><h5>
                                     Super Name: </h5></label>
@@ -80,7 +84,6 @@ and open the template in the editor.
                                     Power: </h5></label>
                             <div class="col-9">
                                 <select id="power" name="powerId" class="form-control">
-                                    <option value="0">Select a Power</option>
                                     <option th:each="power : ${powers}" 
                                             th:value="${power.powerId}" 
                                             th:text="${power.powerName}"></option>

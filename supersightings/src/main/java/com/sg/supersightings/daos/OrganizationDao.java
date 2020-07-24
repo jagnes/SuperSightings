@@ -8,11 +8,13 @@ package com.sg.supersightings.daos;
 import com.sg.supersightings.dtos.Organization;
 import com.sg.supersightings.dtos.Super;
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author jweez
  */
+@Repository
 public interface OrganizationDao {
 
     void addOrganization(Organization toAdd);

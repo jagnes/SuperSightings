@@ -7,60 +7,46 @@ package com.sg.supersightings.dtos;
 
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
  * @author jweez
  */
-@Entity
 public class Organization {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int orgId;
     
-    @NotBlank
-    @Size(max=30)
+    @NotBlank(message = "Name must not be blank")
+    @Size(max=30, message="Name must be less than 30 characters.")
     private String orgName;
     
-    @Size(max=100)
+    @Size(max=100, message="Description must be less than 100 characters.")
     private String orgDescription;
     
-    @NotBlank
-    @Size(max=50)
+    @NotBlank(message = "Address must not be blank")
+    @Size(max=50, message="Address must be less than 50 characters.")
     private String orgAddress;
     
-    @NotBlank
-    @Size(max=50)
+    @NotBlank(message = "City must not be blank")
+    @Size(max=50, message="City must be less than 50 characters.")
     private String orgCity;
     
-    @NotBlank
-    @Size(min=2, max=2)
+    @NotBlank(message = "State must not be blank")
+    @Size(min=2, max=2, message="State Abbreviation must be 2 characters.")
     private String orgState;
     
-    @NotBlank
-    @Size(min=5, max=5)
+    @NotBlank(message = "Zip must not be blank")
+    @Size(min=5, max=5, message="Zip Code be 5 characters.")
     private String orgZip;
     
-    @NotBlank
-    @Size(min=12, max=12)
+    @NotBlank(message = "Phone must not be blank")
+    @Pattern(regexp = "\\d{3}-\\d{3}-\\d{4}", message="Phone must be in the format of XXX-XXX-XXXX.")
+    //@Size(min=12, max=12, message="Phone must be in the format of XXX-XXX-XXXX.")
     private String phone;
     
-    @ManyToMany
-    @JoinTable(name = "organizations_supers",
-            joinColumns = {
-                @JoinColumn(name = "orgId")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "superId")})
     private List<Super> supers;
 
     /**

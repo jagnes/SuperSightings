@@ -7,32 +7,28 @@ package com.sg.supersightings.dtos;
 
 import java.util.Date;
 import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+
 import javax.validation.constraints.PastOrPresent;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
  * @author jweez
  */
-@Entity
 public class Sighting {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int sightingId;
     
-    @ManyToOne
+    @NotNull(message = "Super cannot be blank")
     private Super superSighted;
     
-    @ManyToOne
+    @NotNull(message = "Location cannot be blank")
     private Location locSighted;
     
-    @PastOrPresent
+    @NotNull(message = "Date cannot be blank")
+    @PastOrPresent(message = "Date cannot be in the future")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date sightingDate;
 
